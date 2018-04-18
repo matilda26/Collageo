@@ -10,7 +10,9 @@
         var topRight = group.get('.topRight')[0];
         var bottomRight = group.get('.bottomRight')[0];
         var bottomLeft = group.get('.bottomLeft')[0];
-        var image = group.get('Image')[0];
+        // debugger
+        var image = group.getChildren()[0];
+        // var rect = group.get('Rect')[0];
 
         var anchorX = activeAnchor.getX();
         var anchorY = activeAnchor.getY();
@@ -36,12 +38,15 @@
         }
 
         image.position(topLeft.position());
+        // rect.position(topLeft.position());
 
         var width = topRight.getX() - topLeft.getX();
         var height = bottomLeft.getY() - topLeft.getY();
         if(width && height) {
             image.width(width);
             image.height(height);
+            // rect.width(width);
+            // rect.height(height);
         }
     }
     function addAnchor(group, x, y, name) {
@@ -96,17 +101,13 @@
     });
 
     var layer = new Konva.Layer();
-    stage.add(layer);
 
 
-    var imgOne = new Konva.Image({
-    });
-    // layer.add(imgOne);
-
+    // images
     var imgTwo = new Konva.Image({
     });
-    // layer.add(imgTwo);
-
+    var imgOne = new Konva.Image({
+    });
     var imgOneGroup = new Konva.Group({
         x: 180,
         y: 50,
@@ -114,17 +115,6 @@
     });
     layer.add(imgOneGroup);
     imgOneGroup.add(imgOne);
-
-
-    var imgTwoGroup = new Konva.Group({
-        x: 20,
-        y: 110,
-        draggable: true
-    });
-    layer.add(imgTwoGroup);
-    imgTwoGroup.add(imgTwo);
-
-
     var imageObj1 = new Image();
     imageObj1.onload = function() {
         imgOne.image(imageObj1);
@@ -132,6 +122,15 @@
     };
     imageObj1.src = '/images/test_3.jpg';
 
+    var imgTwo = new Konva.Image({
+    });
+    var imgTwoGroup = new Konva.Group({
+        x: 20,
+        y: 110,
+        draggable: true
+    });
+    layer.add(imgTwoGroup);
+    imgTwoGroup.add(imgTwo);
     var imageObj2 = new Image();
     imageObj2.onload = function() {
         imgTwo.image(imageObj2);
@@ -139,62 +138,92 @@
     };
     imageObj2.src = '/images/test_4.jpg';
 
-    function addAnchors(img, group) {
+    // rectangles
+    var rect1 = new Konva.Rect({
+      width: 100,
+      height: 100,
+      fill: 'red',
+      name: 'rect',
+    });
+
+    var rect1Group = new Konva.Group({
+        x: 20,
+        y: 60,
+        draggable: true,
+        name: 'red-rect',
+    });
+    layer.add(rect1Group);
+    rect1Group.add(rect1).draw();
+
+    var rect2 = new Konva.Rect({
+      width: 100,
+      height: 100,
+      fill: 'black',
+      name: 'rect',
+    });
+
+    var rect2Group = new Konva.Group({
+        x: 100,
+        y: 100,
+        draggable: true,
+        name: 'black-rect'
+    });
+    layer.add(rect2Group);
+    rect2Group.add(rect2).draw();
+
+
+
+    function addAnchors(obj, group) {
       addAnchor(group, 0, 0, 'topLeft');
-      addAnchor(group, img.width(), 0, 'topRight');
-      addAnchor(group, img.width(), img.height(), 'bottomRight');
-      addAnchor(group, 0, img.height(), 'bottomLeft');
+      addAnchor(group, obj.width(), 0, 'topRight');
+      addAnchor(group, obj.width(), obj.height(), 'bottomRight');
+      addAnchor(group, 0, obj.height(), 'bottomLeft');
     };
     window.addEventListener('load', function(){
       addAnchors(imgOne, imgOneGroup);
-      addAnchors(imgTwo, imgTwoGroup)
+      addAnchors(imgTwo, imgTwoGroup);
+      addAnchors(rect1, rect1Group);
+      addAnchors(rect2, rect2Group);
     });
 
+    var selected = '';
+    layer.on('dblclick', function (evt) {
+      // evt.target.fill('hotpink');
+      evt.target.getParent().opacity('0.7');
+      selected = evt.target.getParent();
+      layer.draw();
+    })
 
-var rect1 = new Konva.Rect({
-  x: 60,
-  y: 60,
-  width: 100,
-  height: 90,
-  fill: 'red',
-  name: 'rect',
-  draggable: true
-});
-layer.add(rect1);
+    var upBtn = document.querySelector('.move-up');
+    upBtn.addEventListener('click', function () {
+      selected.moveUp();
+      layer.draw();
+    })
+    var downBtn = document.querySelector('.move-down');
+    downBtn.addEventListener('click', function () {
+      selected.moveDown();
+      layer.draw();
+    })
+    var toTopBtn = document.querySelector('.send-to-front');
+    toTopBtn.addEventListener('click', function () {
+      selected.moveToTop();
+      layer.draw();
+    })
+    var toBackBtn = document.querySelector('.send-to-back');
+    toBackBtn.addEventListener('click', function () {
+      selected.moveToBottom();
+      layer.draw();
+    })
+    var done = document.querySelector('.done');
+    done.addEventListener('click', function () {
+      selected.opacity('1');
+      layer.draw();
+    })
+    var rotate = document.querySelector('.rotate');
+    rotate.addEventListener('click', function () {
+      selected.rotate(-45);
+      layer.draw();
+    })
 
-var rect2 = new Konva.Rect({
-  x: 250,
-  y: 100,
-  width: 150,
-  height: 90,
-  fill: 'black',
-  name: 'rect',
-  draggable: true
-});
-layer.add(rect2);
-layer.draw();
-
-stage.on('click', function (e) {
-  // if click on empty area - remove all transformers
-  if (e.target === stage) {
-    stage.find('Transformer').destroy();
-    layer.draw();
-    return;
-  }
-  // do nothing if clicked NOT on our rectangles
-  if (!e.target.hasName('rect')) {
-    return;
-  }
-  // remove old transformers
-  // TODO: we can skip it if current rect is already selected
-  stage.find('Transformer').destroy();
-
-  // create new transformer
-  var tr = new Konva.Transformer();
-  layer.add(tr);
-  tr.attachTo(e.target);
-  layer.draw();
-})
-
-
+    stage.add(layer);
   </script>

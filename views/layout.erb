@@ -13,6 +13,12 @@
   color: <%= @color if @color %>">
   <header>
     <a href="/">Collageo</a>
+    <button class="move-up">move up</button>
+    <button class="move-down">move down</button>
+    <button class="send-to-back">send to back</button>
+    <button class="send-to-front">send to front</button>
+    <button class="done">done</button>
+    <button class="rotate">rotate</button>
     <div class="login">
       <% if !logged_in? %>
       <a href="/login">login</a>
