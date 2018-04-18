@@ -100,35 +100,29 @@
 
 
     var imgOne = new Konva.Image({
-      x: 180,
-      y: 50,
-      draggable: true
     });
-    layer.add(imgOne);
+    // layer.add(imgOne);
 
     var imgTwo = new Konva.Image({
-      x: 20,
-      y: 110,
-      draggable: true
     });
-    layer.add(imgTwo);
+    // layer.add(imgTwo);
 
-    // var imgOneGroup = new Konva.Group({
-    //     x: 180,
-    //     y: 50,
-    //     draggable: true
-    // });
-    // layer.add(imgOneGroup);
-    // imgOneGroup.add(imgOne);
-    //
-    //
-    // var imgTwoGroup = new Konva.Group({
-    //     x: 20,
-    //     y: 110,
-    //     draggable: true
-    // });
-    // layer.add(imgTwoGroup);
-    // imgTwoGroup.add(imgTwo);
+    var imgOneGroup = new Konva.Group({
+        x: 180,
+        y: 50,
+        draggable: true
+    });
+    layer.add(imgOneGroup);
+    imgOneGroup.add(imgOne);
+
+
+    var imgTwoGroup = new Konva.Group({
+        x: 20,
+        y: 110,
+        draggable: true
+    });
+    layer.add(imgTwoGroup);
+    imgTwoGroup.add(imgTwo);
 
 
     var imageObj1 = new Image();
@@ -145,16 +139,16 @@
     };
     imageObj2.src = '/images/test_4.jpg';
 
-    // function addAnchors(img, group) {
-    //   addAnchor(group, 0, 0, 'topLeft');
-    //   addAnchor(group, img.width(), 0, 'topRight');
-    //   addAnchor(group, img.width(), img.height(), 'bottomRight');
-    //   addAnchor(group, 0, img.height(), 'bottomLeft');
-    // };
-    // window.addEventListener('load', function(){
-    //   addAnchors(imgOne, imgOneGroup);
-    //   addAnchors(imgTwo, imgTwoGroup)
-    // });
+    function addAnchors(img, group) {
+      addAnchor(group, 0, 0, 'topLeft');
+      addAnchor(group, img.width(), 0, 'topRight');
+      addAnchor(group, img.width(), img.height(), 'bottomRight');
+      addAnchor(group, 0, img.height(), 'bottomLeft');
+    };
+    window.addEventListener('load', function(){
+      addAnchors(imgOne, imgOneGroup);
+      addAnchors(imgTwo, imgTwoGroup)
+    });
 
 
 var rect1 = new Konva.Rect({
@@ -173,7 +167,7 @@ var rect2 = new Konva.Rect({
   y: 100,
   width: 150,
   height: 90,
-  fillPatternImage: images.imgOne,
+  fill: 'black',
   name: 'rect',
   draggable: true
 });
@@ -201,30 +195,6 @@ stage.on('click', function (e) {
   tr.attachTo(e.target);
   layer.draw();
 })
-function loadImages(sources, callback) {
-        var images = {};
-        var loadedImages = 0;
-        var numImages = 0;
-        // get num of sources
-        for(var src in sources) {
-            numImages++;
-        }
-        for(var src in sources) {
-            images[src] = new Image();
-            images[src].onload = function() {
-                if(++loadedImages >= numImages) {
-                    callback(images);
-                }
-            };
-            images[src].src = sources[src];
-        }
-    }
-var sources = {
-       imgOne: '/images/test_3.jpg',
-       imgTwo: '/images/test_4.jpg',
-   };
-   loadImages(sources, function(images) {
-           draw(images);
-       });
+
 
   </script>
