@@ -49,7 +49,10 @@ get '/home' do
 end
 
 get '/create' do
+  # @bgcolor = "#0004ff"
+  @bgcolor = "#00028e"
   # @bgcolor = "black"
+  @color = "white"
   erb :create
 end
 

@@ -123,9 +123,10 @@ button:focus {
 
 #container {
   margin-left: 5%;
-  border: 1px solid #e8e8e8;
+  /* border: 1px solid #e8e8e8; */
   display: inline-block;
-  box-shadow: -10px 10px 5px lightgrey;
+  /* box-shadow: -10px 10px 5px #00028e; */
+  background-color: white;
 }
 
 .create-main {
