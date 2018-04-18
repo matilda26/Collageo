@@ -1,0 +1,9 @@
+CREATE TABLE users (
+  id SERIAL4 PRIMARY KEY,
+  username VARCHAR(200) NOT NULL,
+  email VARCHAR(400) NOT NULL,
+  password_digest VARCHAR(200) NOT NULL
+);
+
+
+CREATE DATABASE collageo;
