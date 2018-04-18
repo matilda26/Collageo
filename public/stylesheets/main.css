@@ -116,18 +116,20 @@ button:hover {
   /* text-decoration-color: #f73500; */
   font-style: normal;
 }
-
-/* CREATE */
-#canvas {
-  margin-left: 5%;
-  box-shadow: -10px 10px 5px lightgrey;
-  /* background-color: lightgrey; */
+button:focus {
+  outline:0;
 }
+/* CREATE */
+
+#container {
+  margin-left: 5%;
+  border: 1px solid #e8e8e8;
+  display: inline-block;
+  box-shadow: -10px 10px 5px lightgrey;
+}
+
 .create-main {
   display:flex;
-  /* position: absolute;
-  bottom: 10%;
-  left: 5%; */
   justify-content: space-between;
 }
 .create-main h2 {
@@ -138,13 +140,18 @@ button:hover {
   width: 40%;
 }
 .thumbs button {
-  background-color: black;
-  width: 80px;
-  height: 80px;
+  /* background-color: black; */
+  width: 100px;
+  height: 40px;
   margin: 10px 10px;
   transform: translateX(-10px);
+  border:none;
 }
+.thumbs botton:hover {
+  background-color: #e8e8e8;
+}
+
 .tool-icons {
   display: flex;
   flex-wrap: wrap;
-}
+} */

@@ -1,6 +1,6 @@
 
 require 'sinatra'
-# require 'sinatra/reloader'
+require 'sinatra/reloader'
 # require 'pry'
 require 'active_record'
 require_relative 'db_config'
@@ -49,6 +49,7 @@ get '/home' do
 end
 
 get '/create' do
+  # @bgcolor = "black"
   erb :create
 end
 
