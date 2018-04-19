@@ -1,3 +1,6 @@
+
+CREATE DATABASE collageo;
+
 CREATE TABLE users (
   id SERIAL4 PRIMARY KEY,
   username VARCHAR(200) NOT NULL,
@@ -5,5 +8,11 @@ CREATE TABLE users (
   password_digest VARCHAR(200) NOT NULL
 );
 
+CREATE TABLE assets (
+  id SERIAL4 PRIMARY KEY,
+  image VARCHAR(800) NOT NULL,
+  user_id INTEGER NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
 
-CREATE DATABASE collageo;
+alter table assets ALTER user_id column DROP NOT NULL

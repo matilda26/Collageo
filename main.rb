@@ -3,8 +3,16 @@ require 'sinatra'
 # require 'sinatra/reloader'
 # require 'pry'
 require 'active_record'
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
+# require 'fog'
+require_relative 'models/carrierwave_config'
 require_relative 'db_config'
 require_relative 'models/user'
+require_relative 'models/asset'
+require_relative 'models/image_uploader'
+
+
 enable :sessions
 
 helpers do
@@ -17,6 +25,9 @@ helpers do
 end
 
 get '/' do
+  if logged_in?
+    @username = current_user.username
+  end
   erb :index
 end
 
@@ -32,11 +43,28 @@ post '/session' do
   user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
-    redirect to('/')
+    redirect to('/home')
   else
     @error = "Incorrect login..."
     erb :login
   end
+end
+
+# CREATE ACCOUNT
+get '/login/new' do
+  @bgcolor = "#ffe500"
+  @color = "#f73500"
+  erb :new
+end
+
+post '/new_user' do
+  user = User.new
+  user.username = params[:username]
+  user.email = params[:email]
+  user.password = params[:password]
+  user.save
+  session[:user_id] = user.id
+  redirect to('/home')
 end
 
 delete '/session' do
@@ -45,7 +73,8 @@ delete '/session' do
 end
 
 get '/home' do
-  erb :home
+  @username = current_user.username
+  erb :userhome
 end
 
 get '/create' do
@@ -56,9 +85,14 @@ get '/create' do
   erb :create
 end
 
-get '/test' do
-  erb :test
+get '/upload' do
+  @username = current_user.username
+  erb :upload
 end
-get '/test2' do
-  erb :test2
+
+
+post '/upload' do
+  asset = Asset.new
+  asset.image = params[:image]
+  asset.save
 end

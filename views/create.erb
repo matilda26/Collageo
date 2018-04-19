@@ -25,3 +25,8 @@
 </div>
 </div>
   <script src="/javascripts/create.js"></script>
+<footer>
+  <% if logged_in? %>
+  <h1> <%= @username%></h1>
+  <%end%>
+</footer>

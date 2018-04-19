@@ -12,17 +12,15 @@
   background-color: <%= @bgcolor if @bgcolor %>;
   color: <%= @color if @color %>">
   <header>
-    <a href="/">Collageo</a>
-
+    <a class="title" href="/">Collageo</a>
     <div class="login">
       <% if !logged_in? %>
-      <a href="/login">login</a>
+      <a class="top-right-btn" href="/login">login</a>
       <%end%>
       <% if logged_in? %>
-      <p>User: <%= current_user.name%></p>
       <form class="" action="/session" method="post">
         <input type="hidden" name="_method" value="delete">
-        <button>logout</button>
+        <button class="top-right-btn">logout</button>
       </form>
       <%end%>
     </div> <!-- login end -->
@@ -30,6 +28,10 @@
 
 
   <%= yield %>
-
+  <footer>
+    <% if logged_in? %>
+    <h1> <%= @username%></h1>
+    <%end%>
+  </footer>
 </body>
 </html>

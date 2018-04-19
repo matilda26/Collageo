@@ -122,7 +122,7 @@ imageObj1.onload = function() {
     imgOne.image(imageObj1);
     layer.draw();
 };
-imageObj1.src = '/images/test_3.jpg';
+imageObj1.src = '/images/test_image_3.jpg';
 
 var imgTwo = new Konva.Image({
 });
@@ -138,7 +138,7 @@ imageObj2.onload = function() {
     imgTwo.image(imageObj2);
     layer.draw();
 };
-imageObj2.src = '/images/test_4.jpg';
+imageObj2.src = '/images/test_image_4.jpg';
 
 // rectangles
 var rect1 = new Konva.Rect({
