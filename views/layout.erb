@@ -13,24 +13,13 @@
   color: <%= @color if @color %>">
   <header>
     <a class="title" href="/">Collageo</a>
-    <div class="login">
-      <% if !logged_in? %>
-      <a class="top-right-btn" href="/login">login</a>
-      <%end%>
-      <% if logged_in? %>
-      <form class="" action="/session" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <button class="top-right-btn">logout</button>
-      </form>
-      <%end%>
-    </div> <!-- login end -->
   </header>
 
 
   <%= yield %>
   <footer>
     <% if logged_in? %>
-    <h1> <%= @username%></h1>
+    <a href="/home" class="username"> <%= @username%></a>
     <%end%>
   </footer>
 </body>

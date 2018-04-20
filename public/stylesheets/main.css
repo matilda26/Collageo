@@ -6,6 +6,7 @@
 body {
   margin:0;
   height: 100%;
+  overflow: hidden;
 }
 header {
   display: flex;
@@ -15,7 +16,7 @@ header {
   padding: 5%;
 }
 /* User Title Only */
-h1 {
+.username {
   font-size: 4vmin;
   font-family: 'Tenor Sans', sans-serif;
   float: right;
@@ -24,6 +25,8 @@ h1 {
   right: 5%;
   margin:0;
   padding:0;
+  font-style: normal;
+  text-transform:capitalize;
 }
 a {
   font-size: 8vmin;
@@ -119,16 +122,19 @@ button:focus {
   position:absolute;
   top: 5%;
   right: 5%;
+  cursor: pointer;
 }
 .bottom-left-btn {
   position: absolute;
   bottom: 5%;
   left: 5%;
+  cursor: pointer;
 }
 .bottom-right-btn {
   position: absolute;
   bottom: 5%;
   right: 5%;
+  cursor: pointer;
 }
 
 /* NEW USER */
@@ -141,27 +147,68 @@ button:focus {
   flex-direction: column;
 }
 
+/* SELECT ASSETS */
+input[type="file"] {
+  display: none;
+}
+.choose-image {
+  font-size: 6vmin;
+  cursor: pointer;
+  margin: 1% 0;
+}
+.upload {
+  cursor: pointer;
+  font-size: 6vmin;
+  margin-top: 2%;
+  font-style: normal;
+}
+.upload-div {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+}
+#uploadFile {
+  border: none;
+  color: black;
+  font-size: 4vmin;
+}
+::placeholder {
+  color: black;
+  font-size: 4vmin;
+}
+.asset {
+  width: 20vmin;
+  height: 20vmin;
+  margin-right: 4vmin;
+  cursor: pointer;
+  /* display: inline-block; */
+}
+.selected {
+  border: 2px solid white;
+  opacity: 0.7;
+}
+.assets-div {
+  margin: 2% 5%;
+  display: flex;
+}
 
 
 /* CREATE */
 
 #container {
-  margin-left: 5%;
   display: inline-block;
+  position:absolute;
+  left: 5%;
+  bottom:5%;
+}
+.canvas-default {
   background-color: white;
 }
 
-.create-main {
-  display:flex;
-  justify-content: space-between;
-}
 .create-main h2 {
   padding:0;
 }
-.create-right {
-  margin-right: 5%;
-  width: 40%;
-}
+
 .thumbs button {
   width: 100px;
   height: 40px;
@@ -173,7 +220,35 @@ button:focus {
   background-color: #e8e8e8;
 }
 
-.tool-icons {
+.tools {
   display: flex;
   flex-wrap: wrap;
+  right: 5%;
+  position: absolute;
+}
+.tools button {
+  font-size: 2vmin;
+  font-family: 'Tenor Sans', sans-serif;
+  font-style: normal;
+  text-transform: lowercase;
+}
+
+
+.bg-black {
+  background-color: black;
+}
+.bg-white {
+  background-color: white;
+}
+.bg-red {
+  background-color: red;
+}
+.bg-yellow {
+  background-color: yellow;
+}
+.bg-green {
+  background-color: green;
+}
+.bg-blue {
+  background-color: blue;
 }

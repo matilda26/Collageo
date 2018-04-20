@@ -1,4 +1,26 @@
-<h2>assets</h2>
-<p>Select assets to inlcude in you composition.</p>
-<!-- Thumbs of user assets -->
-<!-- upload to page option -->
+<h2>Select your assets</h2>
+<a class="top-right-btn" href="/create">create</a>
+
+<div class="assets-div">
+<% @assets.each do |asset| %>
+    <img class="asset" src="<%= asset.image.url %>" alt="">
+  <% end %>
+ </div>
+
+
+
+<div class="upload-div">
+  <form  action="/create/upload" method="post" enctype="multipart/form-data">
+    <label class="choose-image">
+      <input id="file-upload" type="file" name="image"/>
+      select an image
+    </label>
+    <input id="uploadFile" placeholder="No File" disabled="disabled"/>
+    <button class="upload">upload</button>
+  </form>
+</div>
+<h1> <%= @username%></h1>
+
+
+<script type="text/javascript" src="/javascripts/select.js">
+</script>

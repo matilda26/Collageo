@@ -1,29 +1,24 @@
 
 <div class="create-main">
-<div id="container"></div>
-<div class="create-right">
-  <div class="assets">
-    <!-- <h2>assets</h2>
-    <div class="thumbs">
-      add thumbs of assets
-    </div> -->
-  </div>
-  <div class="tools">
-    <div class="thumbs">
-      <h2>tools</h2>
-      <div class="tool-icons">
-        <button class="move-up">move up</button>
-        <button class="move-down">move down</button>
-        <button class="send-to-back">send to back</button>
-        <button class="send-to-front">send to front</button>
-        <button class="done">done</button>
-        <button class="rotate">rotate</button>
-        <button class="bgcol">background color</button>
+    <div class="canvas-default" id="container"></div>
+    <div class="tools">
+      <div class="thumbs">
+        <h2>tools</h2>
+        <div class="tools">
+          <button id="move-up">move up</button>
+          <button id="move-down">move down</button>
+          <button id="send-to-back">send to back</button>
+          <button id="send-to-front">send to front</button>
+          <button id="done">done</button>
+          <button id="rotate">rotate</button>
+          <button id="bgcol">background color</button>
+          <!-- <button id="size">change size</button> -->
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
+
   <script src="/javascripts/create.js"></script>
 <footer>
   <% if logged_in? %>

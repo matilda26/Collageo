@@ -1,4 +1,15 @@
 
+<div class="login">
+  <% if !logged_in? %>
+  <a class="top-right-btn" href="/login">login</a>
+  <%end%>
+  <% if logged_in? %>
+  <form class="" action="/session" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button class="top-right-btn">logout</button>
+  </form>
+  <%end%>
+</div> <!-- login end -->
 <h2>selects</h2>
 <div class="main">
   <div class="feature_post">

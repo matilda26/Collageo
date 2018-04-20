@@ -1,11 +1,10 @@
 
 require 'sinatra'
-# require 'sinatra/reloader'
-# require 'pry'
+require 'sinatra/reloader'
+require 'pry'
 require 'active_record'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
-# require 'fog'
 require_relative 'models/carrierwave_config'
 require_relative 'db_config'
 require_relative 'models/user'
@@ -74,25 +73,29 @@ end
 
 get '/home' do
   @username = current_user.username
+  # @color = 'black'
   erb :userhome
 end
 
 get '/create' do
-  # @bgcolor = "#0004ff"
   @bgcolor = "#00028e"
-  # @bgcolor = "black"
   @color = "white"
   erb :create
 end
+get '/create/select' do
+  @bgcolor = "#ff70a2"
+  @assets = Asset.all
+  erb :select
+end
 
-get '/upload' do
-  @username = current_user.username
-  erb :upload
+get '/create/upload' do
+  redirect to ('/create/select')
 end
 
 
-post '/upload' do
+post '/create/upload' do
   asset = Asset.new
   asset.image = params[:image]
+  asset.user_id = current_user.id
   asset.save
 end

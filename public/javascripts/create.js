@@ -1,8 +1,8 @@
 // var width = window.innerWidth;
 // var height = window.innerHeight;
 
-var width = 550;
-var height = 550;
+var width = 600;
+var height = 600;
 
 function update(activeAnchor) {
     var group = activeAnchor.getParent();
@@ -39,15 +39,12 @@ function update(activeAnchor) {
     }
 
     image.position(topLeft.position());
-    // rect.position(topLeft.position());
 
     var width = topRight.getX() - topLeft.getX();
     var height = bottomLeft.getY() - topLeft.getY();
     if(width && height) {
         image.width(width);
         image.height(height);
-        // rect.width(width);
-        // rect.height(height);
     }
 }
 function addAnchor(group, x, y, name) {
@@ -196,35 +193,58 @@ layer.on('dblclick', function (evt) {
   layer.draw();
 })
 
-var upBtn = document.querySelector('.move-up');
+var upBtn = document.querySelector('#move-up');
 upBtn.addEventListener('click', function () {
   selected.moveUp();
   layer.draw();
 })
-var downBtn = document.querySelector('.move-down');
+var downBtn = document.querySelector('#move-down');
 downBtn.addEventListener('click', function () {
   selected.moveDown();
   layer.draw();
 })
-var toTopBtn = document.querySelector('.send-to-front');
+var toTopBtn = document.querySelector('#send-to-front');
 toTopBtn.addEventListener('click', function () {
   selected.moveToTop();
   layer.draw();
 })
-var toBackBtn = document.querySelector('.send-to-back');
+var toBackBtn = document.querySelector('#send-to-back');
 toBackBtn.addEventListener('click', function () {
   selected.moveToBottom();
   layer.draw();
 })
-var done = document.querySelector('.done');
+var done = document.querySelector('#done');
 done.addEventListener('click', function () {
   selected.opacity('1');
   layer.draw();
 })
-var rotate = document.querySelector('.rotate');
+var rotate = document.querySelector('#rotate');
 rotate.addEventListener('click', function () {
   selected.rotate(-45);
   layer.draw();
 })
+var canvas = document.querySelector('#container');
+// var stagecan = document.querySelector('canvas');
+
+var colors = ["bg-black", "bg-red", "bg-yellow", "bg-green", "bg-blue", "bg-white"];
+var current = 0;
+
+var bgColor = document.querySelector('#bgcol');
+bgColor.addEventListener('click', function () {
+  canvas.classList.remove('canvas-default')
+  canvas.classList.remove(colors[current]);
+  current = current + 1;
+  if (current === 6) {
+    current = 0;
+  }
+  canvas.classList.add(colors[current]);
+  })
+  
+// var size = document.querySelector('#size');
+// size.addEventListener('click', function () {
+//   canvas.style.width = '900px';
+//   stagecan.style.width = '900px';
+//   layer.draw();
+// })
 
 stage.add(layer);
