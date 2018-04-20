@@ -78,14 +78,22 @@ get '/home' do
 end
 
 get '/create' do
+  @username = current_user.username
   @bgcolor = "#00028e"
   @color = "white"
   erb :create
 end
 get '/create/select' do
+  @username = current_user.username
   @bgcolor = "#ff70a2"
   @assets = Asset.all
   erb :select
+end
+delete '/create/delete' do
+  # binding.pry
+  Asset.find(params[:id]).delete
+
+  redirect to '/create/select'
 end
 
 get '/create/upload' do
@@ -98,4 +106,5 @@ post '/create/upload' do
   asset.image = params[:image]
   asset.user_id = current_user.id
   asset.save
+  redirect to('/create/select')
 end

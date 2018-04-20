@@ -1,25 +1,32 @@
 <h2>Select your assets</h2>
 <a class="top-right-btn" href="/create">create</a>
 
-<div class="assets-div">
-<% @assets.each do |asset| %>
-    <img class="asset" src="<%= asset.image.url %>" alt="">
-  <% end %>
- </div>
+<form class="" action="/create/delete" method="post">
+  <div class="assets-div">
+    <input type="hidden" name="_method" value="delete">
+    <% @assets.each do |asset| %>
+    <div class="imgbox">
+      <img class="asset" src="<%= asset.image.url %>" alt="" value="<%= asset.id %>">
+      <input class="imagecheck" type="checkbox" name="id" value="<%= asset.id %>">
+      </div>
+    <% end %>
+    <button class="bottom-right-btn">delete</button>
+   </div>
+ </form>
 
-
+<button id="upload-btn" class="bottom-left-btn">upload</button>
 
 <div class="upload-div">
-  <form  action="/create/upload" method="post" enctype="multipart/form-data">
-    <label class="choose-image">
-      <input id="file-upload" type="file" name="image"/>
-      select an image
-    </label>
-    <input id="uploadFile" placeholder="No File" disabled="disabled"/>
-    <button class="upload">upload</button>
-  </form>
+ <form  action="/create/upload" method="post" enctype="multipart/form-data">
+   <label class="choose-image">
+     <input id="file-upload" type="file" name="image"/>
+     select an image
+   </label>
+   <input id="uploadFile" placeholder="no image selected" disabled="disabled"/>
+   <button class="upload">upload</button>
+ </form>
 </div>
-<h1> <%= @username%></h1>
+
 
 
 <script type="text/javascript" src="/javascripts/select.js">

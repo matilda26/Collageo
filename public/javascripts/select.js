@@ -1,7 +1,32 @@
+// upload filname
 document.getElementById("file-upload").onchange = function() {
-  document.getElementById("uploadFile").value = this.value;
+  var filePath = this.value;
+  var file = filePath.replace("C:\\fakepath\\", '');
+  document.getElementById("uploadFile").value = file;
 };
-var select = document.querySelector('.asset');
-select.addEventListener('click', function () {
-  select.classList.add('selected');
+// upload buttons
+var uploadBtn = document.getElementById("upload-btn");
+var uploadForm = document.querySelector(".upload-div");
+uploadBtn.addEventListener('click', function() {
+  uploadForm.classList.add('upload-animate');
+})
+var uploadConfirm = document.querySelector(".upload");
+uploadConfirm.addEventListener('click', function() {
+  uploadForm.classList.remove('upload-animate');
+})
+// selecting the images
+function select(e) {
+  e.target.classList.toggle('selected');
+  var imageCheck = e.target.parentNode.querySelector('.imagecheck')
+  if(imageCheck.checked === false) {
+    imageCheck.checked = true;
+    console.log('checked');
+  } else {
+    imageCheck.checked = false;
+    console.log('not checked');
+  }
+}
+var assets = document.querySelectorAll('.asset');
+assets.forEach(function(a) {
+  a.addEventListener('click', select);
 })
