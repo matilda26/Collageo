@@ -10,8 +10,7 @@ var uploadForm = document.querySelector(".upload-div");
 uploadBtn.addEventListener('click', function() {
   uploadForm.classList.add('upload-animate');
 })
-var uploadConfirm = document.querySelector(".upload");
-uploadConfirm.addEventListener('click', function() {
+document.querySelector(".upload").addEventListener('click', function() {
   uploadForm.classList.remove('upload-animate');
 })
 // selecting the images
@@ -29,4 +28,8 @@ function select(e) {
 var assets = document.querySelectorAll('.asset');
 assets.forEach(function(a) {
   a.addEventListener('click', select);
+})
+
+document.querySelector('#upload-exit').addEventListener('click', function() {
+  uploadForm.classList.remove('upload-animate');
 })

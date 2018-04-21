@@ -16,11 +16,14 @@
   </header>
 
 
+  <% if logged_in? %>
+    <h6 class="user-top"><%= (@username + " ")*100%></h6>
+    <h6 class="user-bottom"><%= (@username + " ")*100%></h6>
+  <%end%>
+
+
   <%= yield %>
-  <!-- <footer>
-    <% if logged_in? %>
-    <a href="/home" class="username"> <%= @username%></a>
-    <%end%>
-  </footer> -->
+
+  
 </body>
 </html>

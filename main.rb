@@ -73,7 +73,8 @@ end
 
 get '/home' do
   @username = current_user.username
-  # @color = 'black'
+  @color = '#0631b2'
+  @bgcolor = "#6cd6fc"
   erb :userhome
 end
 
@@ -83,16 +84,21 @@ get '/create' do
   @color = "white"
   erb :create
 end
+
 get '/create/select' do
   @username = current_user.username
-  @bgcolor = "#ff70a2"
-  @assets = Asset.all
+  @bgcolor = "#E70200"
+  @color = "white"
+  @assets = Asset.where(user_id: current_user.id)
+
   erb :select
 end
+get '/test' do
+  @username = current_user.username
+  erb :test
+end
 delete '/create/delete' do
-  # binding.pry
   Asset.find(params[:id]).delete
-
   redirect to '/create/select'
 end
 

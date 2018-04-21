@@ -1,6 +1,9 @@
 // var width = window.innerWidth;
 // var height = window.innerHeight;
 
+
+
+
 var width = 600;
 var height = 600;
 
@@ -239,7 +242,7 @@ bgColor.addEventListener('click', function () {
   }
   canvas.classList.add(colors[current]);
   })
-  
+
 // var size = document.querySelector('#size');
 // size.addEventListener('click', function () {
 //   canvas.style.width = '900px';

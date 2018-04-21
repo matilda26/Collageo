@@ -15,7 +15,6 @@ header {
   align-content: center;
   padding: 5%;
 }
-/* User Title Only */
 .username {
   font-size: 4vmin;
   font-family: 'Tenor Sans', sans-serif;
@@ -157,7 +156,7 @@ input[type="file"] {
   font-family: 'Archivo Black', sans-serif;
   text-transform: uppercase;
   font-style: italic;
-  color:white;
+  color: #E70200;
   margin:auto;
   padding-top: 18%;
 }
@@ -168,7 +167,7 @@ input[type="file"] {
 .upload {
   cursor: pointer;
   font-size: 8vmin;
-  color: white;
+  color: #E70200;
   margin:auto;
 }
 @keyframes popup {
@@ -178,10 +177,11 @@ input[type="file"] {
 .upload-div {
   position: absolute;
   bottom: 0;
-  background-color: rgba(255, 0, 123,0.7);
+  background-color: rgba(255, 255,255,0.9);
   height: 0%;
   width: 100%;
   text-align:center;
+
 }
 .upload-animate {
   animation-name: popup;
@@ -191,37 +191,36 @@ input[type="file"] {
 
 #uploadFile {
   border: none;
-  color: white;
   font-size: 6vmin;
   padding: 5% 0;
   text-align: center;
   width:100%;
-  /* padding-left: 5%; */
+  color: #E70200;
 
 }
 ::placeholder {
-  color: white;
   font-size: 6vmin;
   text-align: center;
+  color: #E70200;
 }
 .asset {
   width: 20vmin;
   height: 20vmin;
   object-fit: cover;
   position: absolute;
+  cursor: pointer;
   top:0;
   left:0;
 }
 .selected {
-  border: 2px solid white;
-  opacity: 0.7;
+  border: 6px solid white;
+  opacity: 0.8;
 }
 .assets-div {
   margin: 2% 5%;
   display: flex;
 }
 .imgbox {
-  /* margin: 2% 5%; */
   width:20vmin;
   height:20vmin;
   position: relative;
@@ -230,20 +229,59 @@ input[type="file"] {
 }
 
 .imagecheck {
-  /* width:19vmin;
-  height:19vmin;
-  background: black;
-  cursor: pointer;
-  background-color: none;
-  position: absolute;
-  top:0;
-  left:0; */
   display: none;
 }
-
-
+#upload-btn {
+  color: white;
+  background-color:rgba(255, 255, 255, 0.5);
+  width: 20vmin;
+  height: 20vmin;
+  font-style: normal;
+}
+#upload-btn:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+.exit {
+   font-style: normal;
+   position: absolute;
+   top: 5%;
+   right: 5%;
+   cursor: pointer;
+}
+.exit:hover {
+  text-decoration: none;
+}
+#upload-exit {
+  color: #E70200;
+}
+h6 {
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 2vmin;
+  height: 2vmin;
+  overflow: hidden;
+  margin:0;
+  padding: 0;
+}
+.user-top {
+  position: absolute;
+  top:1vmin;
+}
+.user-bottom {
+  position: absolute;
+  bottom:1vmin;
+}
+/* .user-right {
+  position: absolute;
+  right:1vmin;
+  transform: rotate(-90deg);
+}
+.user-left {
+  position: absolute;
+  left:1vmin;
+  transform: rotate(90deg);
+} */
 /* CREATE */
-
 #container {
   display: inline-block;
   position:absolute;
@@ -281,8 +319,7 @@ input[type="file"] {
   font-style: normal;
   text-transform: lowercase;
 }
-
-
+/* canvas background */
 .bg-black {
   background-color: black;
 }
