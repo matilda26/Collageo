@@ -25,7 +25,7 @@ end
 
 get '/' do
   if logged_in?
-    @username = current_user.username
+    @user = current_user
   end
   erb :index
 end
@@ -72,31 +72,21 @@ delete '/session' do
 end
 
 get '/home' do
-  @username = current_user.username
+  @user = current_user
   @color = '#0631b2'
   @bgcolor = "#6cd6fc"
   erb :userhome
 end
 
-get '/create' do
-  @username = current_user.username
-  @bgcolor = "#00028e"
-  @color = "white"
-  erb :create
-end
-
 get '/create/select' do
-  @username = current_user.username
+  @user = current_user
   @bgcolor = "#E70200"
   @color = "white"
   @assets = Asset.where(user_id: current_user.id)
 
   erb :select
 end
-get '/test' do
-  @username = current_user.username
-  erb :test
-end
+
 delete '/create/delete' do
   Asset.find(params[:id]).delete
   redirect to '/create/select'
@@ -106,11 +96,21 @@ get '/create/upload' do
   redirect to ('/create/select')
 end
 
-
 post '/create/upload' do
   asset = Asset.new
   asset.image = params[:image]
   asset.user_id = current_user.id
   asset.save
   redirect to('/create/select')
+end
+post '/create' do
+
+end
+
+get '/create' do
+  @assets =
+  @user = current_user
+  @bgcolor = "#00028e"
+  @color = "white"
+  erb :create
 end

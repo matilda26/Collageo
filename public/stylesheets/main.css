@@ -260,27 +260,43 @@ h6 {
   font-size: 2vmin;
   height: 2vmin;
   overflow: hidden;
+  font-style: italic;
+  opacity: 0.5;
   margin:0;
   padding: 0;
+  word-wrap: break-word;
+  text-justify: inter-word;
 }
-.user-top {
+/* .user-top {
   position: absolute;
-  top:1vmin;
+  top:1vh;
+  left: 1vw;
+  width:98vw;
 }
 .user-bottom {
   position: absolute;
-  bottom:1vmin;
-}
-/* .user-right {
-  position: absolute;
-  right:1vmin;
-  transform: rotate(-90deg);
-}
+  bottom:1vh;
+  right: 1vw;
+  width: 98vw;
+  transform: rotate(180deg);
+} */
 .user-left {
   position: absolute;
-  left:1vmin;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+  bottom:0;
+  left: 2vw;
+  width: 100%;
+}
+.user-right {
+  position: absolute;
   transform: rotate(90deg);
-} */
+  transform-origin: bottom right;
+  bottom:0;
+  right: 2vw;
+  width: 100%;
+}
+
 /* CREATE */
 #container {
   display: inline-block;

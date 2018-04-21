@@ -1,6 +1,19 @@
 
 <div class="create-main">
-    <div class="canvas-default" id="container"></div>
+  <form action="/home" method="get">
+    <button class="exit" id="create-exit">&#10005;</button>
+  </form>
+
+
+
+  
+  <div class="canvas-default" id="container"></div>
+
+
+
+
+
+
     <div class="tools">
       <div class="thumbs">
         <h2>tools</h2>
@@ -9,19 +22,18 @@
           <button id="move-down">move down</button>
           <button id="send-to-back">send to back</button>
           <button id="send-to-front">send to front</button>
-          <button id="done">done</button>
           <button id="rotate">rotate</button>
           <button id="bgcol">background color</button>
-          <!-- <button id="size">change size</button> -->
         </div>
       </div>
     </div>
   </div>
 </div>
 
+
+
+
+
+
+
   <script src="/javascripts/create.js"></script>
-<footer>
-  <% if logged_in? %>
-  <h1> <%= @username%></h1>
-  <%end%>
-</footer>

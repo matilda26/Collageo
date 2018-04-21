@@ -1,8 +1,3 @@
-// var width = window.innerWidth;
-// var height = window.innerHeight;
-
-
-
 
 var width = 600;
 var height = 600;
@@ -106,39 +101,39 @@ var layer = new Konva.Layer();
 
 
 // images
-var imgTwo = new Konva.Image({
-});
-var imgOne = new Konva.Image({
-});
-var imgOneGroup = new Konva.Group({
-    x: 180,
-    y: 50,
-    draggable: true
-});
-layer.add(imgOneGroup);
-imgOneGroup.add(imgOne);
-var imageObj1 = new Image();
-imageObj1.onload = function() {
-    imgOne.image(imageObj1);
-    layer.draw();
-};
-imageObj1.src = '/images/test_image_3.jpg';
-
-var imgTwo = new Konva.Image({
-});
-var imgTwoGroup = new Konva.Group({
-    x: 20,
-    y: 110,
-    draggable: true
-});
-layer.add(imgTwoGroup);
-imgTwoGroup.add(imgTwo);
-var imageObj2 = new Image();
-imageObj2.onload = function() {
-    imgTwo.image(imageObj2);
-    layer.draw();
-};
-imageObj2.src = '/images/test_image_4.jpg';
+// var imgTwo = new Konva.Image({
+// });
+// var imgOne = new Konva.Image({
+// });
+// var imgOneGroup = new Konva.Group({
+//     x: 180,
+//     y: 50,
+//     draggable: true
+// });
+// layer.add(imgOneGroup);
+// imgOneGroup.add(imgOne);
+// var imageObj1 = new Image();
+// imageObj1.onload = function() {
+//     imgOne.image(imageObj1);
+//     layer.draw();
+// };
+// imageObj1.src = '/images/test_image_3.jpg';
+//
+// var imgTwo = new Konva.Image({
+// });
+// var imgTwoGroup = new Konva.Group({
+//     x: 20,
+//     y: 110,
+//     draggable: true
+// });
+// layer.add(imgTwoGroup);
+// imgTwoGroup.add(imgTwo);
+// var imageObj2 = new Image();
+// imageObj2.onload = function() {
+//     imgTwo.image(imageObj2);
+//     layer.draw();
+// };
+// imageObj2.src = '/images/test_image_4.jpg';
 
 // rectangles
 var rect1 = new Konva.Rect({
@@ -182,52 +177,46 @@ function addAnchors(obj, group) {
   addAnchor(group, 0, obj.height(), 'bottomLeft');
 };
 window.addEventListener('load', function(){
-  addAnchors(imgOne, imgOneGroup);
-  addAnchors(imgTwo, imgTwoGroup);
+  // addAnchors(imgOne, imgOneGroup);
+  // addAnchors(imgTwo, imgTwoGroup);
   addAnchors(rect1, rect1Group);
   addAnchors(rect2, rect2Group);
 });
 
 var selected = '';
 layer.on('dblclick', function (evt) {
-  // evt.target.fill('hotpink');
-  evt.target.getParent().opacity('0.7');
-  selected = evt.target.getParent();
+  if (selected === '') {
+    evt.target.getParent().opacity('0.7');
+    selected = evt.target.getParent();
+  } else {
+    evt.target.getParent().opacity('1');
+    selected = '';
+  }
   layer.draw();
 })
 
-var upBtn = document.querySelector('#move-up');
-upBtn.addEventListener('click', function () {
+document.querySelector('#move-up').addEventListener('click', function () {
   selected.moveUp();
   layer.draw();
 })
-var downBtn = document.querySelector('#move-down');
-downBtn.addEventListener('click', function () {
+document.querySelector('#move-down').addEventListener('click', function () {
   selected.moveDown();
   layer.draw();
 })
-var toTopBtn = document.querySelector('#send-to-front');
-toTopBtn.addEventListener('click', function () {
+document.querySelector('#send-to-front').addEventListener('click', function () {
   selected.moveToTop();
   layer.draw();
 })
-var toBackBtn = document.querySelector('#send-to-back');
-toBackBtn.addEventListener('click', function () {
+document.querySelector('#send-to-back').addEventListener('click', function () {
   selected.moveToBottom();
   layer.draw();
 })
-var done = document.querySelector('#done');
-done.addEventListener('click', function () {
-  selected.opacity('1');
-  layer.draw();
-})
-var rotate = document.querySelector('#rotate');
-rotate.addEventListener('click', function () {
+
+document.querySelector('#rotate').addEventListener('click', function () {
   selected.rotate(-45);
   layer.draw();
 })
 var canvas = document.querySelector('#container');
-// var stagecan = document.querySelector('canvas');
 
 var colors = ["bg-black", "bg-red", "bg-yellow", "bg-green", "bg-blue", "bg-white"];
 var current = 0;
@@ -242,7 +231,7 @@ bgColor.addEventListener('click', function () {
   }
   canvas.classList.add(colors[current]);
   })
-
+// MAYBE WANT TO USE THIS......
 // var size = document.querySelector('#size');
 // size.addEventListener('click', function () {
 //   canvas.style.width = '900px';
@@ -251,3 +240,22 @@ bgColor.addEventListener('click', function () {
 // })
 
 stage.add(layer);
+
+var assets = document.querySelectorAll('.selected');
+assets.forEach(function(a) {
+  var image =  new Konva.Image({
+  });
+  var imageGroup = new Konva.Group({
+      x: 20,
+      y: 110,
+      draggable: true
+  });
+  layer.add(imageGroup);
+  imageGroup.add(image);
+  source = new Image();
+  source.onload = function() {
+      image.image(source);
+      layer.draw();
+  };
+  image.src = 'a.src';
+})
