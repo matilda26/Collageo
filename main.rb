@@ -46,7 +46,7 @@ post '/session' do
     redirect to('/create/select')
   else
     @error = "Incorrect login..."
-    @bgcolor = '#0000ff'
+    @bgcolor = 'red'
     @color = "white"
     erb :login
   end

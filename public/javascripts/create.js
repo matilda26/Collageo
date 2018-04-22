@@ -76,7 +76,7 @@ function addAnchor(group, x, y, name) {
         var layer = this.getLayer();
         document.body.style.cursor = 'pointer';
         this.setRadius(8);
-        this.fill('#666');
+        this.fill('black');
         layer.draw();
     });
     anchor.on('mouseout', function() {
@@ -105,12 +105,7 @@ function addAnchors(obj, group) {
   addAnchor(group, obj.width(), obj.height(), 'bottomRight');
   addAnchor(group, 0, obj.height(), 'bottomLeft');
 };
-window.addEventListener('load', function(){
-  // addAnchors(imgOne, imgOneGroup);
-  // addAnchors(imgTwo, imgTwoGroup);
-  addAnchors(rect1, rect1Group);
-  addAnchors(rect2, rect2Group);
-});
+
 
 var selected = '';
 layer.on('dblclick', function (evt) {
@@ -158,14 +153,14 @@ document.getElementById("file-upload").onchange = function() {
   document.getElementById("uploadFile").value = file;
 };
 // upload buttons
-var uploadBtn = document.getElementById("upload-btn");
-var uploadForm = document.querySelector(".upload-div");
-uploadBtn.addEventListener('click', function() {
-  uploadForm.classList.add('upload-animate');
-})
-document.querySelector(".upload").addEventListener('click', function() {
-  uploadForm.classList.remove('upload-animate');
-})
+// var uploadBtn = document.getElementById("upload-btn");
+// var uploadForm = document.querySelector(".upload-div");
+// uploadBtn.addEventListener('click', function() {
+//   uploadForm.classList.add('upload-animate');
+// })
+// document.querySelector(".upload").addEventListener('click', function() {
+//   uploadForm.classList.remove('upload-animate');
+// })
 // selecting the images
 var selectedImages = [];
 function select(e) {
