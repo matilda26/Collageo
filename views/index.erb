@@ -1,27 +1,72 @@
 
 <div class="login">
   <% if !logged_in? %>
-  <a class="top-right-btn" href="/login">login</a>
+  <a class="bottom-right-btn" href="/login">login</a>
   <%end%>
   <% if logged_in? %>
   <form class="" action="/session" method="post">
     <input type="hidden" name="_method" value="delete">
-    <button class="top-right-btn">logout</button>
+    <button class="bottom-right-btn">logout</button>
   </form>
   <%end%>
 </div> <!-- login end -->
-<h2>selects</h2>
-<div class="main">
-  <div class="feature_post">
-    <img class="img_feature" src="images/collage_3.png" alt="">
-    <h3>Name of Artist</h3>
-  </div>
-  <div class="feature_post">
-    <img class="img_feature" src="images/collage_3.png" alt="">
-    <h3>Name of Artist</h3>
-  </div>
-  <div class="feature_post">
-    <img class="img_feature" src="images/collage_3.png" alt="">
-    <h3>Name of Artist</h3>
-  </div>
-</div>
+
+<script type="text/javascript" src="/javascripts/paper-full.js"></script>
+
+<script type="text/paperscript" canvas="canvas">
+
+        // The amount of points in the path:
+        var points = 20;
+
+        // The distance between the points:
+        var length = 50;
+
+        var path = new Path({
+            strokeColor: 'blue',
+            strokeWidth: 50,
+            strokeCap: 'round'
+        });
+
+        var start = view.center / [2.5, 1.2];
+        for (var i = 0; i < points; i++)
+            path.add(start + new Point(i * length, 0));
+
+        function onMouseMove(event) {
+            path.firstSegment.point = event.point;
+            for (var i = 0; i < points - 1; i++) {
+                var segment = path.segments[i];
+                var nextSegment = segment.next;
+                var vector = segment.point - nextSegment.point;
+                vector.length = length;
+                nextSegment.point = segment.point - vector;
+            }
+            path.smooth({ type: 'continuous' });
+        }
+
+
+
+
+        var colors = ["bg-black", "bg-red", "bg-yellow", "bg-green", "bg-white", "bg-blue"];
+        var stroke = ['#ff0000', '#ffff00', '#00ff00', '#0000ff', '#ff8000', '#ff00ff'];
+        var current = 0;
+        var body = document.querySelector('canvas');
+
+        body.addEventListener('click', function() {
+          body.classList.remove(colors[current]);
+
+          current = current + 1;
+          if (current === 6) {
+            current = 0;
+          }
+          body.classList.add(colors[current]);
+          path.strokeColor = stroke[current];
+        })
+
+
+
+
+
+    </script>
+    <canvas id="canvas" resize></canvas>
+</head>
+<body>

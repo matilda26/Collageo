@@ -1,6 +1,6 @@
 
-var width = 600;
-var height = 600;
+var width = 550;
+var height = 550;
 
 function update(activeAnchor) {
     var group = activeAnchor.getParent();
@@ -99,77 +99,6 @@ var stage = new Konva.Stage({
 
 var layer = new Konva.Layer();
 
-
-// images
-// var imgTwo = new Konva.Image({
-// });
-// var imgOne = new Konva.Image({
-// });
-// var imgOneGroup = new Konva.Group({
-//     x: 180,
-//     y: 50,
-//     draggable: true
-// });
-// layer.add(imgOneGroup);
-// imgOneGroup.add(imgOne);
-// var imageObj1 = new Image();
-// imageObj1.onload = function() {
-//     imgOne.image(imageObj1);
-//     layer.draw();
-// };
-// imageObj1.src = '/images/test_image_3.jpg';
-//
-// var imgTwo = new Konva.Image({
-// });
-// var imgTwoGroup = new Konva.Group({
-//     x: 20,
-//     y: 110,
-//     draggable: true
-// });
-// layer.add(imgTwoGroup);
-// imgTwoGroup.add(imgTwo);
-// var imageObj2 = new Image();
-// imageObj2.onload = function() {
-//     imgTwo.image(imageObj2);
-//     layer.draw();
-// };
-// imageObj2.src = '/images/test_image_4.jpg';
-
-// rectangles
-var rect1 = new Konva.Rect({
-  width: 100,
-  height: 100,
-  fill: 'red',
-  name: 'rect',
-});
-
-var rect1Group = new Konva.Group({
-    x: 20,
-    y: 60,
-    draggable: true,
-    name: 'red-rect',
-});
-layer.add(rect1Group);
-rect1Group.add(rect1).draw();
-
-var rect2 = new Konva.Rect({
-  width: 100,
-  height: 100,
-  fill: 'black',
-  name: 'rect',
-});
-
-var rect2Group = new Konva.Group({
-    x: 100,
-    y: 100,
-    draggable: true,
-    name: 'black-rect'
-});
-layer.add(rect2Group);
-rect2Group.add(rect2).draw();
-
-
-
 function addAnchors(obj, group) {
   addAnchor(group, 0, 0, 'topLeft');
   addAnchor(group, obj.width(), 0, 'topRight');
@@ -211,51 +140,112 @@ document.querySelector('#send-to-back').addEventListener('click', function () {
   selected.moveToBottom();
   layer.draw();
 })
-
 document.querySelector('#rotate').addEventListener('click', function () {
   selected.rotate(-45);
   layer.draw();
 })
-var canvas = document.querySelector('#container');
-
-var colors = ["bg-black", "bg-red", "bg-yellow", "bg-green", "bg-blue", "bg-white"];
-var current = 0;
-
-var bgColor = document.querySelector('#bgcol');
-bgColor.addEventListener('click', function () {
-  canvas.classList.remove('canvas-default')
-  canvas.classList.remove(colors[current]);
-  current = current + 1;
-  if (current === 6) {
-    current = 0;
-  }
-  canvas.classList.add(colors[current]);
-  })
-// MAYBE WANT TO USE THIS......
-// var size = document.querySelector('#size');
-// size.addEventListener('click', function () {
-//   canvas.style.width = '900px';
-//   stagecan.style.width = '900px';
-//   layer.draw();
-// })
+document.querySelector('#delete').addEventListener('click', function () {
+  selected.destroy();
+  layer.draw();
+})
 
 stage.add(layer);
 
-var assets = document.querySelectorAll('.selected');
+// upload filname
+document.getElementById("file-upload").onchange = function() {
+  var filePath = this.value;
+  var file = filePath.replace("C:\\fakepath\\", '');
+  document.getElementById("uploadFile").value = file;
+};
+// upload buttons
+var uploadBtn = document.getElementById("upload-btn");
+var uploadForm = document.querySelector(".upload-div");
+uploadBtn.addEventListener('click', function() {
+  uploadForm.classList.add('upload-animate');
+})
+document.querySelector(".upload").addEventListener('click', function() {
+  uploadForm.classList.remove('upload-animate');
+})
+// selecting the images
+var selectedImages = [];
+function select(e) {
+  e.target.classList.toggle('selected');
+  if (e.target.classList.contains('selected')) {
+    selectedImages.push(e.target.src);
+    console.log(selectedImages);
+  } else {
+    var index = selectedImages.indexOf(e.target.src);
+    selectedImages.splice(index, 1);
+    console.log(selectedImages);
+  }
+}
+var assets = document.querySelectorAll('.asset-thumb');
 assets.forEach(function(a) {
-  var image =  new Konva.Image({
+  a.addEventListener('click', select);
+})
+
+document.querySelector('#upload-exit').addEventListener('click', function() {
+  uploadForm.classList.remove('upload-animate');
+})
+
+document.querySelector('#add').addEventListener('click', function () {
+  var newImg = new Konva.Image({
+    width: 200,
+    height: 200
   });
-  var imageGroup = new Konva.Group({
+  var newImgGroup = new Konva.Group({
       x: 20,
       y: 110,
       draggable: true
   });
-  layer.add(imageGroup);
-  imageGroup.add(image);
-  source = new Image();
-  source.onload = function() {
-      image.image(source);
+  layer.add(newImgGroup);
+  newImgGroup.add(newImg);
+  var imageObj = new Image();
+  imageObj.onload = function() {
+      newImg.image(imageObj);
       layer.draw();
   };
-  image.src = 'a.src';
+  imageObj.src = selectedImages[0];
+  addAnchors(newImg, newImgGroup);
 })
+
+document.querySelector('#add-rect').addEventListener('click', function () {
+  var rect = new Konva.Rect({
+    width: 200,
+    height: 100,
+    fill: 'red',
+    name: 'rect'
+  });
+  var rectGroup = new Konva.Group({
+      x: 20,
+      y: 60,
+      draggable: true,
+      name: 'red-rect'
+  });
+  layer.add(rectGroup);
+  rectGroup.add(rect).draw();
+  addAnchors(rect, rectGroup);
+})
+
+// var canvas = document.querySelector('#container');
+var colors = ['#ffff00', '#00ff00', '#0000ff', '#ff8000', '#ff00ff', '#ff0000'];
+var current = 0;
+
+var shapeColor = document.querySelector('#shape-col');
+shapeColor.addEventListener('click', function () {
+  selected.children[0].fill(colors[current]);
+  layer.draw();
+  current = current + 1;
+  if (current === 6) {
+    current = 0;
+  }
+})
+
+
+
+// var output = document.querySelector('canvas');
+// console.log(output);
+// document.querySelector('#save').addEventListener('click', function () {
+//   var dataurl = output.toDataURL();
+//   console.log(dataurl);
+// })

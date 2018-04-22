@@ -15,6 +15,14 @@ header {
   align-content: center;
   padding: 5%;
 }
+canvas[resize] {
+  width: 100%;
+  height: 100%;
+  z-index:-1;
+  margin:0;
+  padding:0;
+  position: absolute;
+}
 .username {
   font-size: 4vmin;
   font-family: 'Tenor Sans', sans-serif;
@@ -50,7 +58,7 @@ h2 {
   font-style: italic;
   font-size: 6vmin;
   margin: 0;
-  padding: 0 5%;
+  padding: 0;
 }
 p {
   font-family: 'Tenor Sans', sans-serif;
@@ -103,6 +111,7 @@ input {
   display: block;
   background-color: rgba(0,0,0,0);
   border: 2px solid white;
+  color: yellow;
 }
 
 button {
@@ -145,6 +154,35 @@ button:focus {
   justify-content: space-between;
   flex-direction: column;
 }
+h6 {
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 2vmin;
+  height: 2vmin;
+  overflow: hidden;
+  font-style: italic;
+  opacity: 0.5;
+  margin:0;
+  padding: 0;
+  word-wrap: break-word;
+  text-justify: inter-word;
+}
+
+.user-left {
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+  bottom:0;
+  left: 2vw;
+  width: 100%;
+}
+.user-right {
+  position: absolute;
+  transform: rotate(90deg);
+  transform-origin: bottom right;
+  bottom:0;
+  right: 2vw;
+  width: 100%;
+}
 
 /* SELECT ASSETS */
 input[type="file"] {
@@ -177,7 +215,8 @@ input[type="file"] {
 .upload-div {
   position: absolute;
   bottom: 0;
-  background-color: rgba(255, 255,255,0.9);
+  /* margin-right:5%; */
+  background-color: rgba(255, 255,0,0.9);
   height: 0%;
   width: 100%;
   text-align:center;
@@ -203,44 +242,19 @@ input[type="file"] {
   text-align: center;
   color: #E70200;
 }
-.asset {
-  width: 20vmin;
-  height: 20vmin;
-  object-fit: cover;
-  position: absolute;
-  cursor: pointer;
-  top:0;
-  left:0;
-}
-.selected {
-  border: 6px solid white;
-  opacity: 0.8;
-}
-.assets-div {
-  margin: 2% 5%;
-  display: flex;
-}
-.imgbox {
-  width:20vmin;
-  height:20vmin;
-  position: relative;
-  display: inline-block;
-  margin-right: 3vmin;
-}
 
-.imagecheck {
-  display: none;
-}
 #upload-btn {
   color: white;
   background-color:rgba(255, 255, 255, 0.5);
-  width: 20vmin;
-  height: 20vmin;
+  width: 10vmin;
+  height: 10vmin;
   font-style: normal;
+  font-size: 5vmin;
 }
 #upload-btn:hover {
   text-decoration: none;
   cursor: pointer;
+  font-size: 6vmin;
 }
 .exit {
    font-style: normal;
@@ -255,85 +269,130 @@ input[type="file"] {
 #upload-exit {
   color: #E70200;
 }
-h6 {
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 2vmin;
-  height: 2vmin;
-  overflow: hidden;
-  font-style: italic;
-  opacity: 0.5;
-  margin:0;
-  padding: 0;
-  word-wrap: break-word;
-  text-justify: inter-word;
+/* SELECT/MANAGE ASSETS */
+.manage-assets {
+  width: 90%;
+  height: 80vh;
+  /* border: 2px solid red; */
+  margin: 0 5%;
 }
-/* .user-top {
-  position: absolute;
-  top:1vh;
-  left: 1vw;
-  width:98vw;
+.manage-assets h2 {
+  margin-bottom: 3vh;
 }
-.user-bottom {
-  position: absolute;
-  bottom:1vh;
-  right: 1vw;
-  width: 98vw;
-  transform: rotate(180deg);
-} */
-.user-left {
-  position: absolute;
-  transform: rotate(-90deg);
-  transform-origin: bottom left;
-  bottom:0;
-  left: 2vw;
-  width: 100%;
+.tiles {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
-.user-right {
-  position: absolute;
-  transform: rotate(90deg);
-  transform-origin: bottom right;
-  bottom:0;
-  right: 2vw;
-  width: 100%;
+.tiles img {
+  width: 20vmin;
+  height: 20vmin;
+  margin: 0 1vw 1vw 0;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+#upload-btn-lrg {
+  color: white;
+  background-color:rgba(255, 255, 255, 0.5);
+  width: 20vmin;
+  height: 20vmin;
+  font-style: normal;
+  font-size: 8vmin;
+}
+#upload-btn-lrg:hover {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 10vmin;
 }
 
 /* CREATE */
+.create-main {
+  display: flex;
+  /* border: 2px solid green; */
+  margin: 0 5% 5% 5%;
+}
 #container {
   display: inline-block;
-  position:absolute;
-  left: 5%;
-  bottom:5%;
 }
 .canvas-default {
   background-color: white;
 }
-
-.create-main h2 {
-  padding:0;
+.assets-div {
+  width: 40vw;
+  margin: 0 2vw;
+  position: relative;
+  /* border: 2px solid yellow; */
+}
+.assets-blocks {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  /* border: 2px solid black; */
 }
 
-.thumbs button {
-  width: 100px;
+.asset-thumb {
+  width: 10vmin;
+  height: 10vmin;
+  margin: 0 1vw 1vw 0;
+  object-fit: cover;
+  cursor: pointer;
+}
+.selected {
+  border: 4px solid white;
+  opacity: 0.8;
+}
+.delete {
+  position: absolute;
+  bottom:0;
+}
+.image-check {
+  display: none;
+}
+
+.tips {
+  font-size: 2vmin;
+}
+.tips-div {
+  position: absolute;
+  bottom: 0;
+}
+
+.tool-thumbs button {
+  width: 100%;
   height: 40px;
-  margin: 10px 10px;
-  transform: translateX(-10px);
   border:none;
 }
-.thumbs botton:hover {
-  background-color: #e8e8e8;
+.tool-thumbs button:hover {
+  /* background-color: rgba(255,255,255,0.5); */
+  text-decoration: underline;
 }
-
-.tools {
-  display: flex;
-  flex-wrap: wrap;
-  right: 5%;
-  position: absolute;
+.tools-div {
+  display: block;
+  width: 15vw;
+  /* border: 2px solid black; */
+  position: relative;
 }
-.tools button {
+.tool-thumbs button {
   font-size: 2vmin;
   font-family: 'Tenor Sans', sans-serif;
   font-style: normal;
   text-transform: lowercase;
+  text-align: right;
+}
+.tools-div h2 {
+  text-align: right;
+}
+.tips span {
+  font-weight: bold;
+  font-style: italic;
+}
+#save {
+  position: absolute;
+  bottom:0;
+}
+#delete {
+  margin-bottom: 20%;
 }
 /* canvas background */
 .bg-black {

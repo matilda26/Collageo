@@ -1,1 +1,12 @@
 <a class="top-right-btn" href="/create/select">create</a>
+
+<div class="assets-all">
+
+  <% @assets.each do |asset| %>
+      <img class="showcase" src="<%= asset.image.url %>" alt="<%= asset.image %>">
+  <% end %>
+
+
+
+
+</div>

@@ -1,31 +1,60 @@
 
+<form action="/create/select" method="get">
+  <button class="exit" id="create-exit">&#10005;</button>
+</form>
+
+
 <div class="create-main">
-  <form action="/home" method="get">
-    <button class="exit" id="create-exit">&#10005;</button>
-  </form>
-
-
-
-  
+  <!-- CANVAS -->
   <div class="canvas-default" id="container"></div>
 
-
-
-
-
-
-    <div class="tools">
-      <div class="thumbs">
-        <h2>tools</h2>
-        <div class="tools">
-          <button id="move-up">move up</button>
-          <button id="move-down">move down</button>
-          <button id="send-to-back">send to back</button>
-          <button id="send-to-front">send to front</button>
-          <button id="rotate">rotate</button>
-          <button id="bgcol">background color</button>
-        </div>
+  <!-- ASSETS -->
+  <div class="assets-div">
+    <h2>assets</h2>
+    <div class="assets-blocks">
+        <% @assets.each do |asset| %>
+            <img class="asset-thumb" src="<%= asset.image.url %>" alt="">
+        <% end %>
+        <!-- <button class="delete">delete</button> -->
+      <!-- <button id="upload-btn"> + </button> -->
+      <div class="tips-div">
+        <h3>Tips</h3>
+        <p class="tips"><span>Upload</span> your own assets to place on your canvas. <br>Resize your images and shapes using the <span>corner anchors</span> and <span>double click</span> on images within your canvas to select and set your changes.
+        </p>
       </div>
+    </div>
+  </div>
+
+
+
+  <!-- UPLOADING NEW IMAGES -->
+  <div class="upload-div">
+    <button class="exit" id="upload-exit">&#10005;</button>
+   <form  action="/create/upload" method="post" enctype="multipart/form-data">
+     <label class="choose-image">
+       <input id="file-upload" type="file" name="image"/>
+       select
+     </label>
+     <input id="uploadFile" placeholder="no image selected" disabled="disabled"/>
+     <button class="upload">upload</button>
+   </form>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="tools-div">
+    <h2>tools</h2>
+    <div class="tool-thumbs">
+      <button id="add">add to canvas</button>
+      <button id="add-rect">add shape</button>
+      <button id="delete">delete</button>
+      <button id="move-up">move up</button>
+      <button id="move-down">move down</button>
+      <button id="send-to-front">send to front</button>
+      <button id="send-to-back">send to back</button>
+      <button id="rotate">rotate</button>
+      <button id="shape-col">shape color</button>
+
+      <button id="save">save canvas</button>
     </div>
   </div>
 </div>

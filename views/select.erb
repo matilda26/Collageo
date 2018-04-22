@@ -1,23 +1,26 @@
-<h2>Select your assets</h2>
+
 <form class="" action="/create" method="get">
   <button class="top-right-btn" >create</button>
 </form>
 
 
-<div class="assets-div">
-  <form class="" action="/create/delete" method="post">
-    <input type="hidden" name="_method" value="delete">
+<div class="manage-assets">
+  <h2>manage your assets</h2>
+  <div class="tiles">
+    <form class="" action="/create/delete" method="post">
+      <input type="hidden" name="_method" value="delete">
 
-    <% @assets.each do |asset| %>
-      <div class="imgbox">
-        <img class="asset" src="<%= asset.image.url %>" alt="" value="<%= asset.id %>">
-        <input class="imagecheck" type="checkbox" name="id" value="<%= asset.id %>">
-      </div>
-    <% end %>
+      <% @assets.each do |asset| %>
 
-    <button class="bottom-right-btn">delete</button>
-  </form>
-  <button id="upload-btn"> + </button>
+          <img class="asset" src="<%= asset.image.url %>" alt="" value="<%= asset.id %>">
+          <input class="image-check" type="checkbox" name="id" value="<%= asset.id %>">
+
+      <% end %>
+
+      <button class="bottom-right-btn">delete</button>
+    </form>
+    <button id="upload-btn-lrg"> + </button>
+  </div>
 </div>
 
 
