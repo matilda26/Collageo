@@ -34,7 +34,7 @@ end
 
 # LOGIN
 get '/login' do
-  @bgcolor = '#0000ff'
+  @bgcolor = '#ff3b00'
   @color = "yellow"
   @destination = '/'
   erb :login
