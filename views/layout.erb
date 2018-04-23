@@ -14,7 +14,10 @@
   <header>
     <a class="title" href="<%=@destination%>">Collageo</a>
   </header>
-
+<% if logged_in? %>
+<h6 class="user-left"><%= (@user.username + " &#9787; ")*100%></h6>
+<h6 class="user-right"><%= (@user.username + " &#9787; ")*100%></h6>
+<%end%>
 
 
 
