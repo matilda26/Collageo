@@ -246,11 +246,11 @@ var can = document.querySelector('canvas');
 
 function downloadCanvas(canvas, filename) {
     var save = document.querySelector('#save');
-    save.href = canvas.toDataURL('image/jpeg', 1.0);
+    save.href = canvas.toDataURL('image/png', 1.0);
     save.download = filename;
 }
 
 document.getElementById('save').addEventListener('click', function(e) {
 
-    downloadCanvas(can, 'collageo.jpg');
+    downloadCanvas(can, 'collageo.png');
 })
