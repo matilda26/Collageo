@@ -23,5 +23,5 @@ My initial approach was using Konva.js. As previously mentioned, it proved to be
 - In addition, I would like to be able to add the user's collages to their homepage once complete. This way, there can be a community section of the site, where users can share their collages, comment, get inspired. This is something that will easily be deployable... I'll do it tonight.
 - I was having issues downloading the canvas with images. Being downloaded as a png, they currently have no background color. It would be great to be able to add a canvas background color or atleast export as white.
 - In terms of image manipulation, I would like to be able to maintain the aspect ratio and rotate from a central origin.
-- It would be great to also include a color picker function changing the shape color and background options.
+- It would be great to also include a color picker function with more options for changing the shape color and background options.
 - Add function to be able to upload multiple assets at once and place multiple assets onto the canvas at once.
