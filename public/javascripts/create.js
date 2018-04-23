@@ -242,8 +242,8 @@ shapeColor.addEventListener('click', function () {
   }
 })
 
-
 var can = document.querySelector('canvas');
+
 function downloadCanvas(canvas, filename) {
     var save = document.querySelector('#save');
     save.href = canvas.toDataURL('image/jpeg', 1.0);
@@ -251,5 +251,6 @@ function downloadCanvas(canvas, filename) {
 }
 
 document.getElementById('save').addEventListener('click', function(e) {
+
     downloadCanvas(can, 'collageo.jpg');
 })
