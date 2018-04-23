@@ -1,11 +1,11 @@
 
 require 'sinatra'
-# require 'sinatra/reloader'
+require 'sinatra/reloader'
 # require 'pry'
 require 'active_record'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
-require 'carrierwave/processing/mini_magick'
+require 'cloudinary'
 require_relative 'models/carrierwave_config'
 require_relative 'db_config'
 require_relative 'models/user'
@@ -28,6 +28,7 @@ get '/' do
   if logged_in?
     @user = current_user
   end
+  @destination = '/'
   erb :index
 end
 
@@ -36,6 +37,7 @@ end
 get '/login' do
   @bgcolor = '#0000ff'
   @color = "yellow"
+  @destination = '/'
   erb :login
 end
 
@@ -48,6 +50,7 @@ post '/session' do
     @error = "Incorrect login..."
     @bgcolor = 'red'
     @color = "white"
+    @destination = '/'
     erb :login
   end
 end
@@ -56,6 +59,7 @@ end
 get '/login/new' do
   @bgcolor = "#ffe500"
   @color = "#f73500"
+  @destination = '/'
   erb :new
 end
 
@@ -87,7 +91,7 @@ get '/create/select' do
   @color = '#0631b2'
   @bgcolor = "#6cd6fc"
   @assets = Asset.where(user_id: current_user.id)
-  # @selected =
+  @destination = '/'
   erb :select
 end
 
@@ -104,6 +108,7 @@ post '/create/upload' do
 end
 
 delete '/create/delete' do
+  raise params.to_json
   Asset.find(params[:id]).delete
   redirect to '/create/select'
 end
@@ -113,6 +118,7 @@ post '/create' do
   @user = current_user
   @bgcolor = "#00028e"
   @color = "white"
+  @destination = '/create/select'
   erb :create
 end
 
@@ -121,5 +127,6 @@ get '/create' do
   @bgcolor = "#E70200"
   @color = "white"
   @assets = Asset.where(user_id: current_user.id)
+  @destination = '/create/select'
   erb :create
 end

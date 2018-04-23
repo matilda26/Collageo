@@ -222,7 +222,6 @@ document.querySelector('#add-rect').addEventListener('click', function () {
   addAnchors(rect, rectGroup);
 })
 
-// var canvas = document.querySelector('#container');
 var colors = ['#ffff00', '#00ff00', '#0000ff', '#ff8000', '#ff00ff', '#ff0000'];
 var current = 0;
 
@@ -236,11 +235,10 @@ shapeColor.addEventListener('click', function () {
   }
 })
 
-
-
-// var output = document.querySelector('canvas');
-// console.log(output);
-// document.querySelector('#save').addEventListener('click', function () {
-//   var dataurl = output.toDataURL();
-//   console.log(dataurl);
-// })
+function downloadCanvas(link, canvasId, filename) {
+    link.href = document.getElementById(canvasId).toDataURL();
+    link.download = filename;
+}
+document.getElementById('save').addEventListener('click', function() {
+    downloadCanvas(this, 'container', 'test.png');
+}, false);

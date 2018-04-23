@@ -11,10 +11,10 @@
       <input type="hidden" name="_method" value="delete">
 
       <% @assets.each do |asset| %>
-
+        <div class="asset-group">
           <img class="asset" src="<%= asset.image.url %>" alt="" value="<%= asset.id %>">
           <input class="image-check" type="checkbox" name="id" value="<%= asset.id %>">
-
+        </div>
       <% end %>
 
       <button class="bottom-right-btn">delete</button>

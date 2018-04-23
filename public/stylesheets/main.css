@@ -262,14 +262,19 @@ input[type="file"] {
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
+  width: 90%;
 }
-.tiles img {
+.asset-group {
+  display: inline-block;
+}
+.asset-group img {
   width: 20vmin;
   height: 20vmin;
   margin: 0 1vw 1vw 0;
   cursor: pointer;
   object-fit: cover;
 }
+
 
 #upload-btn-lrg {
   color: white;
