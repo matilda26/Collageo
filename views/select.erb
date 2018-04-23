@@ -12,7 +12,7 @@
 
       <% @assets.each do |asset| %>
         <div class="asset-group">
-          <img class="asset" src="<%= asset.image.url %>" alt="" value="<%= asset.id %>">
+          <img class="asset" src="<%= asset.image.standard.url %>" alt="" value="<%= asset.id %>">
           <input class="image-check" type="checkbox" name="id" value="<%= asset.id %>">
         </div>
       <% end %>
