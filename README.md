@@ -16,8 +16,11 @@ Initially, Amazon s3 was used for image storage, however, droped for employment 
 CarrierWave and Cloudinary are used for storage assistance on Heroku. Cloudinary is used to restrict the image size as there were issues with adding anchors for resizing images on the canvas if the image was larger that the canvas. This has resulted in a lower quality of image on download - something I would like to fix.
 
 ## Approach
-My initial approach was using Konva.js. As previously mentioned, it proved to be very helpful but limiting in terms of image manipulation. 
+My initial approach was using Konva.js. As previously mentioned, it proved to be very helpful but limiting in terms of image manipulation.
 
 ## Unresolved Issues
-The intention of the app was to create a dynamic mixed media collage where users could combine image, shapes and video. The integration of video content onto the canvas and the subsequent recording and downloading of the final collage proved to be too difficult within the 5 day timeline.
-In addition, I would like to be able to add the user's collages to their homepage once complete.
+- The intention of the app was to create a dynamic mixed media collage where users could combine image, shapes and video. The integration of video content onto the canvas and the subsequent recording and downloading of the final collage proved to be too difficult within the 5 day timeline.
+- In addition, I would like to be able to add the user's collages to their homepage once complete. This way, there can be a blog page to the site, where users can share their collages and comment on others. This is something that will easily be deployable... I'll do it tonight.
+- I was having issues downloading the canvas with images. It would be great to be able to add a canvas background color.
+- In terms of image manipulation, I would like to be able to maintain the aspect ratio and rotate from a central origin.
+- It would be great to also include a color picker function rather than the simple web colors that I have included for the shape color options.
