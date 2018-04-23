@@ -357,12 +357,13 @@ input[type="file"] {
   /* border: 2px solid black; */
   position: relative;
 }
-.tool-thumbs button {
+.tool-thumbs button, #save {
   font-size: 2vmin;
   font-family: 'Tenor Sans', sans-serif;
   font-style: normal;
   text-transform: lowercase;
   text-align: right;
+  padding: 0;
 }
 .tools-div h2 {
   text-align: right;
@@ -374,6 +375,7 @@ input[type="file"] {
 #save {
   position: absolute;
   bottom:0;
+  right: 0;
 }
 #delete {
   margin-bottom: 20%;

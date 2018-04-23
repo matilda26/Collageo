@@ -99,6 +99,7 @@ var stage = new Konva.Stage({
 
 var layer = new Konva.Layer();
 
+
 function addAnchors(group) {
   for (var i = 0; i < selectedImages.length; i++) {
     addAnchor(group, 0, 0, 'topLeft');
@@ -144,6 +145,13 @@ document.querySelector('#rotate').addEventListener('click', function () {
   selected.rotate(-45);
   layer.draw();
 })
+var opacity = [1, 0.75, 0.5, 0.25];
+var opacCount = 0;
+document.querySelector('#opacity').addEventListener('click', function () {
+  selected.opacity(opacity[opacCount + 1]);
+  opacCount += 1;
+  layer.draw();
+})
 document.querySelector('#delete').addEventListener('click', function () {
   selected.destroy();
   layer.draw();
@@ -184,6 +192,7 @@ document.querySelector('#add').addEventListener('click', function () {
     layer.add(newImgGroup);
     newImgGroup.add(newImg);
     var imageObj = new Image();
+    imageObj.crossOrigin = 'Anonymous';
     imageObj.onload = function() {
         newImg.image(imageObj);
         layer.draw();
@@ -214,7 +223,10 @@ document.querySelector('#add-rect').addEventListener('click', function () {
   });
   layer.add(rectGroup);
   rectGroup.add(rect).draw();
-  addAnchors(rect, rectGroup);
+  addAnchor(rectGroup, 0, 0, 'topLeft');
+  addAnchor(rectGroup, 200, 0, 'topRight');
+  addAnchor(rectGroup, 200, 150, 'bottomRight');
+  addAnchor(rectGroup, 0, 150, 'bottomLeft');
 })
 
 var colors = ['#C0C0C0', '#808080', '#000000', '#FF0000', '#800000', '#FFFF00', '#808000', '#00FF00', '#008000', '#00FFFF', '#008080','#0000FF', '#000080', '#FF00FF', '#800080'];
@@ -231,22 +243,13 @@ shapeColor.addEventListener('click', function () {
 })
 
 
-
-function downloadCanvas(link, canvasId, filename) {
-    link.href = document.querySelector(canvasId).toDataURL();
-    link.download = filename;
+var can = document.querySelector('canvas');
+function downloadCanvas(canvas, filename) {
+    var save = document.querySelector('#save');
+    save.href = canvas.toDataURL('image/jpeg', 1.0);
+    save.download = filename;
 }
-document.getElementById('save').addEventListener('click', function() {
-    // var canvas = document.querySelector('canvas');
-    // stage.toImage({
-    //   callback: function(img) {
-    //     img.width(550);
-    //     img.height(550);
-    //     img.quality(1);
-    //   }
-    // });
-    // var dl = output.toDataURL();
-    // console.log(dl);
-    downloadCanvas(this, stage, 'test.png');
-    // stage.toDataURL({ callback: function (i) { window.open(i) } })
+
+document.getElementById('save').addEventListener('click', function(e) {
+    downloadCanvas(can, 'collageo.jpg');
 })

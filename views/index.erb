@@ -47,8 +47,8 @@
 
 
 
-        var colors = ["bg-black", "bg-red", "bg-yellow", "bg-green", "bg-white", "bg-blue"];
-        var stroke = ['#ff0000', '#ffff00', '#00ff00', '#0000ff', '#ff8000', '#ff00ff'];
+        var colors = ["bg-black", "bg-red", "bg-yellow", "bg-green","bg-blue", "bg-white" ];
+        var stroke = ['#ff0000', '#ffffff', '	#FF0000', '#FFFF00', '#008000', '#000000'];
         var current = 0;
         var body = document.querySelector('canvas');
 
@@ -60,6 +60,7 @@
             current = 0;
           }
           body.classList.add(colors[current]);
+          path.clone();
           path.strokeColor = stroke[current];
         })
 

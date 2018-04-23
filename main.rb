@@ -1,7 +1,6 @@
 
 require 'sinatra'
-# require 'sinatra/reloader'
-# require 'pry'
+
 require 'active_record'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
@@ -108,7 +107,6 @@ post '/create/upload' do
 end
 
 delete '/create/delete' do
-  raise params.to_json
   Asset.find(params[:id]).delete
   redirect to '/create/select'
 end
