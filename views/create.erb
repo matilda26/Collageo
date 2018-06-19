@@ -1,8 +1,6 @@
-
 <form action="/create/select" method="get">
   <button class="exit" id="create-exit">&#10005;</button>
 </form>
-
 
 <div class="create-main">
   <!-- CANVAS -->
@@ -12,33 +10,37 @@
   <div class="assets-div">
     <h2>assets</h2>
     <div class="assets-blocks">
-        <% @assets.each do |asset| %>
-            <img class="asset-thumb" src="<%= asset.image.standard.url %>" alt="">
-        <% end %>
-        <!-- <button class="delete">delete</button> -->
+      <% @assets.each do |asset| %>
+        <img class="asset-thumb" src="<%= asset.image.standard.url %>" alt="">
+      <% end %>
+      <!-- <button class="delete">delete</button> -->
       <!-- <button id="upload-btn"> + </button> -->
       <div class="tips-div">
         <h3>Tips</h3>
-        <p class="tips"><span>Upload</span> your own assets to place on your canvas. <br>Resize your images and shapes using the <span>corner anchors</span> and <span>double click</span> on images within your canvas to select and set your changes.
+        <p class="tips">
+          <span>Upload</span>
+          your own assets to place on the canvas.
+          <br>Resize your images and shapes using the
+          <span>corner anchors</span>
+          and
+          <span>double click</span>
+          on images within your canvas to select and set your changes.
         </p>
       </div>
     </div>
   </div>
+  <div class="video-div">
+    <video id="video1" controls="controls" width="270" autoplay="autoplay">
+      <source src="images/mov_bbb.mp4" type='video/mp4'>
+      <source src="images/mov_bbb.ogg" type='video/ogg'>
+      <source src="images/mov_bbb.webm" type='video/webm'>
+    </video>
 
 
-
-  <!-- UPLOADING NEW IMAGES -->
-  <div class="upload-div">
-    <button class="exit" id="upload-exit">&#10005;</button>
-   <form  action="/create/upload" method="post" enctype="multipart/form-data">
-     <label class="choose-image">
-       <input id="file-upload" type="file" name="image"/>
-       select
-     </label>
-     <input id="uploadFile" placeholder="no image selected" disabled="disabled"/>
-     <button class="upload">upload</button>
-   </form>
   </div>
+  <script type="text/javascript">
+
+  </script>
 
   <!-- TOOLS -->
   <div class="tools-div">
@@ -59,11 +61,17 @@
     </div>
   </div>
 </div>
+<div>
+      <button id="record">Start Recording</button>
+      <button id="play" disabled>Play</button>
+      <button id="download" disabled>Download</button>
+    </div>
 
-
-
-
-
-
-
-  <script src="/javascripts/create.js"></script>
+<script src="/javascripts/create.js"></script>
+<script src="/javascripts/third_party/camera.js"></script>
+<script src="/javascripts/third_party/camera_controller.js"></script>
+<script src="/javascripts/third_party/demo.js.js"></script>
+<script src="/javascripts/third_party/matrix4x4.js"></script>
+<script src="/javascripts/third_party/teapotstream.js"></script>
+<script src="/javascripts/third_party/webgl-debug.js"></script>
+<script src="/javascripts/third_party/webgl-utils.js"></script>
