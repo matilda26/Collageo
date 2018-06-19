@@ -155,12 +155,16 @@ button {
 button:focus {
   outline: 0;
 }
-
+.top-right-btn, .bottom-left-btn,.bottom-right-btn, .title {
+  margin: 0;
+  padding: 0;
+}
 .top-right-btn {
   position: absolute;
   top: 5%;
   right: 5%;
   cursor: pointer;
+
 }
 
 .bottom-left-btn {
@@ -208,16 +212,16 @@ h6 {
   transform-origin: bottom left;
   bottom: 0;
   left: 2vw;
-  width: 100%;
+  width: 400%;
 }
 
 .user-right {
   position: absolute;
   transform: rotate(90deg);
   transform-origin: bottom right;
-  bottom: 0;
+  bottom: -400px;
   right: 2vw;
-  width: 100%;
+  width: 400%;
 }
 
 /* SELECT ASSETS */
@@ -473,6 +477,7 @@ input[type="file"] {
 #delete {
   margin-bottom: 20%;
 }
+
 
 /* canvas background */
 
