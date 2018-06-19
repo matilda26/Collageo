@@ -28,6 +28,7 @@ get '/' do
     @user = current_user
   end
   @destination = '/'
+
   erb :index
 end
 
@@ -58,6 +59,7 @@ end
 get '/login/new' do
   @bgcolor = "#ffe500"
   @color = "#f73500"
+  @input = "#f73500"
   @destination = '/'
   erb :new
 end

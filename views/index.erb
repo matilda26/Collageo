@@ -1,74 +1,96 @@
-
 <div class="login">
   <% if !logged_in? %>
-  <a class="bottom-right-btn" href="/login">login</a>
+    <a class="bottom-right-btn" href="/login">login</a>
   <%end%>
   <% if logged_in? %>
-  <form class="" action="/session" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button class="bottom-right-btn">logout</button>
-  </form>
-  <a class="top-right-btn" href="/create/select">create</a>
+    <form class="" action="/session" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button class="bottom-right-btn">logout</button>
+    </form>
+    <a class="top-right-btn" href="/create/select">create</a>
   <%end%>
-</div> <!-- login end -->
+</div>
+<!-- login end -->
 
 <script type="text/javascript" src="/javascripts/paper-full.js"></script>
 
 <script type="text/paperscript" canvas="canvas">
 
-        // The amount of points in the path:
-        var points = 20;
+  // The amount of points in the path:
+  var points = 20;
 
-        // The distance between the points:
-        var length = 50;
+  // The distance between the points:
+  var length = 50;
 
-        var path = new Path({
-            strokeColor: 'blue',
-            strokeWidth: 50,
-            strokeCap: 'round'
-        });
+  var path = new Path({strokeColor: 'blue', strokeWidth: 50, strokeCap: 'round'});
 
-        var start = view.center / [2.5, 1.2];
-        for (var i = 0; i < points; i++)
-            path.add(start + new Point(i * length, 0));
+  var start = view.center / [2.5, 1.2];
+  for (var i = 0; i < points; i++)
+    path.add(start + new Point(i * length, 0));
 
-        function onMouseMove(event) {
-            path.firstSegment.point = event.point;
-            for (var i = 0; i < points - 1; i++) {
-                var segment = path.segments[i];
-                var nextSegment = segment.next;
-                var vector = segment.point - nextSegment.point;
-                vector.length = length;
-                nextSegment.point = segment.point - vector;
-            }
-            path.smooth({ type: 'continuous' });
-        }
+  function onMouseMove(event) {
+    path.firstSegment.point = event.point;
+    for (var i = 0; i < points - 1; i++) {
+      var segment = path.segments[i];
+      var nextSegment = segment.next;
+      var vector = segment.point - nextSegment.point;
+      vector.length = length;
+      nextSegment.point = segment.point - vector;
+    }
+    path.smooth({type: 'continuous'});
+  }
 
-        var palette = ['#6534ff', '#62bcfa', '#fccdd3', '#bbc4ef']
+  var palette = ['#6534ff', '#62bcfa', '#fccdd3', '#bbc4ef']
 
+  var colors = [
+    "bg-black",
+    "bg-red",
+    "bg-yellow",
+    "bg-green",
+    "bg-blue",
+    "bg-white"
+  ];
+  var stroke = [
+    '#ff0000',
+    '#ffffff',
+    '	#FF0000',
+    '#FFFF00',
+    '#008000',
+    '#000000'
+  ];
+  var current = 0;
+  var body = document.querySelector('canvas');
 
-        var colors = ["bg-black", "bg-red", "bg-yellow", "bg-green","bg-blue", "bg-white" ];
-        var stroke = ['#ff0000', '#ffffff', '	#FF0000', '#FFFF00', '#008000', '#000000'];
-        var current = 0;
-        var body = document.querySelector('canvas');
+  body.addEventListener('click', function () {
+    body.classList.remove(colors[current]);
 
-        body.addEventListener('click', function() {
-          body.classList.remove(colors[current]);
+    current = current + 1;
+    if (current === 6) {
+      current = 0;
+    }
+    body.classList.add(colors[current]);
+    path.clone();
+    path.strokeColor = stroke[current];
+  })
+</script>
+<div class="about">
+  <button class="exit" id="about-exit">&#10005;</button>
 
-          current = current + 1;
-          if (current === 6) {
-            current = 0;
-          }
-          body.classList.add(colors[current]);
-          path.clone();
-          path.strokeColor = stroke[current];
-        })
+  <p>Collageo is a mixed-media digital collaging app. Combine video, vector and photographic content with easy download for Instagram.<br><br>By Nice Studio.<br>
+    <a href="mailto:matilda@nicestudio.com.au?Subject=Collageo" target="_top" class="bottom-left-btn">Contact</a>
+  </p>
+</div>
+<script type="text/javascript">
+  var aboutDiv = document.querySelector('.about');
 
-
-
-
-
-    </script>
-    <canvas id="canvas" resize></canvas>
+  document.querySelector('.title').addEventListener('click', function (e) {
+    e.preventDefault();
+    aboutDiv.classList.add('about-animate');
+  })
+  document.querySelector('#about-exit').addEventListener('click', function () {
+    aboutDiv.classList.remove('about-animate');
+  })
+</script>
+<canvas id="canvas" resize="resize"></canvas>
 </head>
 <body>

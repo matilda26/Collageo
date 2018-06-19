@@ -4,19 +4,60 @@
 }
 
 body {
-  margin:0;
+  margin: 0;
   height: 100%;
   overflow: hidden;
+  padding: 0;
+}
+
+.about {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(244, 66, 223, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: blue;
+  padding: 5%;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+}
+
+.about p {
+  width: 80%;
+  padding-top: 10%;
+}
+
+@keyframes sideIn {
+  0% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.about-animate {
+  animation-name: sideIn;
+  animation-duration: 0.8s;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 canvas[resize] {
   width: 100vw;
   height: 100vh;
-  z-index:-1;
-  margin:0;
-  padding:0;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
   position: absolute;
 }
+
 .username {
   font-size: 4vmin;
   font-family: 'Tenor Sans', sans-serif;
@@ -24,11 +65,12 @@ canvas[resize] {
   position: absolute;
   bottom: 5%;
   right: 5%;
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   font-style: normal;
-  text-transform:capitalize;
+  text-transform: capitalize;
 }
+
 a {
   font-size: 8vmin;
   font-style: italic;
@@ -36,17 +78,20 @@ a {
   text-transform: uppercase;
   padding: 0;
   margin: 0;
-  color:inherit;
+  color: inherit;
 }
+
 .title {
   position: absolute;
   top: 5%;
-  left:5%;
+  left: 5%;
 }
+
 a:hover, button:hover {
   text-decoration: underline overline;
   font-style: normal;
 }
+
 h2 {
   font-family: 'Tenor Sans', sans-serif;
   font-style: italic;
@@ -54,6 +99,7 @@ h2 {
   margin: 0;
   padding: 0;
 }
+
 p {
   font-family: 'Tenor Sans', sans-serif;
   font-size: 6vmin;
@@ -62,60 +108,68 @@ p {
 }
 
 /* INDEX */
+
 h3 {
   font-family: 'Tenor Sans', sans-serif;
   font-size: 3vmin;
 }
 
 /* LOGIN */
+
 .log-main {
   margin: 10% 5% 5% 5%;
   display: flex;
   flex-direction: column;
 }
+
 .log-box {
   display: flex;
   flex-direction: column;
 }
+
 label {
   font-size: 6vmin;
   font-family: 'Tenor Sans', sans-serif;
   margin: 1% 0;
   display: block;
 }
+
 input {
   font-size: 6vmin;
   font-family: 'Tenor Sans', sans-serif;
   display: block;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   border: 2px solid white;
   color: yellow;
 }
 
 button {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   border: none;
   font-size: 8vmin;
   font-style: italic;
-  color:inherit;
+  color: inherit;
   text-transform: uppercase;
 }
 
 button:focus {
-  outline:0;
+  outline: 0;
 }
+
 .top-right-btn {
-  position:absolute;
+  position: absolute;
   top: 5%;
   right: 5%;
   cursor: pointer;
 }
+
 .bottom-left-btn {
   position: absolute;
   bottom: 5%;
   left: 5%;
   cursor: pointer;
 }
+
 .bottom-right-btn {
   position: absolute;
   bottom: 5%;
@@ -124,14 +178,17 @@ button:focus {
 }
 
 /* NEW USER */
+
 .new-main {
   margin: 10% 5% 5% 5%;
 }
+
 .new-box {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
+
 h6 {
   font-family: 'Tenor Sans', sans-serif;
   font-size: 2vmin;
@@ -139,7 +196,7 @@ h6 {
   overflow: hidden;
   font-style: italic;
   opacity: 0.5;
-  margin:0;
+  margin: 0;
   padding: 0;
   word-wrap: break-word;
   text-justify: inter-word;
@@ -149,23 +206,26 @@ h6 {
   position: absolute;
   transform: rotate(-90deg);
   transform-origin: bottom left;
-  bottom:0;
+  bottom: 0;
   left: 2vw;
   width: 100%;
 }
+
 .user-right {
   position: absolute;
   transform: rotate(90deg);
   transform-origin: bottom right;
-  bottom:0;
+  bottom: 0;
   right: 2vw;
   width: 100%;
 }
 
 /* SELECT ASSETS */
+
 input[type="file"] {
   display: none;
 }
+
 .choose-image {
   font-size: 8vmin;
   cursor: pointer;
@@ -173,37 +233,45 @@ input[type="file"] {
   text-transform: uppercase;
   font-style: italic;
   color: #E70200;
-  margin:auto;
+  margin: auto;
   padding-top: 18%;
 }
+
 .choose-image:hover {
-  font-style:normal;
+  font-style: normal;
   text-decoration: underline overline;
 }
+
 .upload {
   cursor: pointer;
   font-size: 8vmin;
   color: #E70200;
-  margin:auto;
+  margin: auto;
 }
+
 @keyframes popup {
-  0% {height:0%;}
-  100% {height:100%;}
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 100%;
+  }
 }
+
 .upload-div {
   position: absolute;
   bottom: 0;
   /* margin-right:5%; */
-  background-color: rgba(255, 255,0,0.9);
+  background-color: rgba(255, 255, 0, 0.9);
   height: 0%;
   width: 100%;
-  text-align:center;
-
+  text-align: center;
 }
+
 .upload-animate {
   animation-name: popup;
   animation-duration: 0.5s;
-  height:100%;
+  height: 100%;
 }
 
 #uploadFile {
@@ -211,10 +279,10 @@ input[type="file"] {
   font-size: 6vmin;
   padding: 5% 0;
   text-align: center;
-  width:100%;
+  width: 100%;
   color: #E70200;
-
 }
+
 ::placeholder {
   font-size: 6vmin;
   text-align: center;
@@ -223,50 +291,59 @@ input[type="file"] {
 
 #upload-btn {
   color: white;
-  background-color:rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   width: 10vmin;
   height: 10vmin;
   font-style: normal;
   font-size: 5vmin;
 }
+
 #upload-btn:hover {
   text-decoration: none;
   cursor: pointer;
   font-size: 6vmin;
 }
+
 .exit {
-   font-style: normal;
-   position: absolute;
-   top: 5%;
-   right: 5%;
-   cursor: pointer;
+  font-style: normal;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  cursor: pointer;
 }
+
 .exit:hover {
   text-decoration: none;
 }
+
 #upload-exit {
   color: #E70200;
 }
+
 /* SELECT/MANAGE ASSETS */
+
 .manage-assets {
   width: 90%;
   height: 80vh;
   /* border: 2px solid red; */
   margin: 10% 5% 5% 5%;
-
 }
+
 .manage-assets h2 {
   margin-bottom: 3vh;
 }
+
 .tiles {
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
   width: 90%;
 }
+
 .asset-group {
   display: inline-block;
 }
+
 .asset-group img {
   width: 20vmin;
   height: 20vmin;
@@ -275,15 +352,15 @@ input[type="file"] {
   object-fit: cover;
 }
 
-
 #upload-btn-lrg {
   color: white;
-  background-color:rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   width: 20vmin;
   height: 20vmin;
   font-style: normal;
   font-size: 8vmin;
 }
+
 #upload-btn-lrg:hover {
   text-decoration: none;
   cursor: pointer;
@@ -291,23 +368,28 @@ input[type="file"] {
 }
 
 /* CREATE */
+
 .create-main {
   display: flex;
   /* border: 2px solid green; */
   margin: 10% 5% 5% 5%;
 }
+
 #container {
   display: inline-block;
 }
+
 .canvas-default {
   background-color: white;
 }
+
 .assets-div {
   width: 40vw;
   margin: 0 2vw;
   position: relative;
   /* border: 2px solid yellow; */
 }
+
 .assets-blocks {
   display: flex;
   align-items: flex-start;
@@ -322,14 +404,17 @@ input[type="file"] {
   object-fit: cover;
   cursor: pointer;
 }
+
 .selected {
   border: 4px solid white;
   opacity: 0.8;
 }
+
 .delete {
   position: absolute;
-  bottom:0;
+  bottom: 0;
 }
+
 .image-check {
   display: none;
 }
@@ -337,6 +422,7 @@ input[type="file"] {
 .tips {
   font-size: 2vmin;
 }
+
 .tips-div {
   position: absolute;
   bottom: 0;
@@ -345,18 +431,21 @@ input[type="file"] {
 .tool-thumbs button {
   width: 100%;
   height: 40px;
-  border:none;
+  border: none;
 }
+
 .tool-thumbs button:hover {
   /* background-color: rgba(255,255,255,0.5); */
   text-decoration: underline;
 }
+
 .tools-div {
   display: block;
   width: 15vw;
   /* border: 2px solid black; */
   position: relative;
 }
+
 .tool-thumbs button, #save {
   font-size: 2vmin;
   font-family: 'Tenor Sans', sans-serif;
@@ -365,37 +454,48 @@ input[type="file"] {
   text-align: right;
   padding: 0;
 }
+
 .tools-div h2 {
   text-align: right;
 }
+
 .tips span {
   font-weight: bold;
   font-style: italic;
 }
+
 #save {
   position: absolute;
-  bottom:0;
+  bottom: 0;
   right: 0;
 }
+
 #delete {
   margin-bottom: 20%;
 }
+
 /* canvas background */
+
 .bg-black {
   background-color: black;
 }
+
 .bg-white {
   background-color: white;
 }
+
 .bg-red {
   background-color: red;
 }
+
 .bg-yellow {
   background-color: yellow;
 }
+
 .bg-green {
   background-color: green;
 }
+
 .bg-blue {
   background-color: blue;
 }

@@ -1,29 +1,27 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Collageo</title>
-  <link rel='stylesheet' href='/stylesheets/main.css'>
-  <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Tenor+Sans" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
-  <script src="https://cdn.rawgit.com/konvajs/konva/2.0.2/konva.min.js"></script>
-</head>
-<body style="
+  <head>
+    <meta charset="UTF-8">
+    <title>Collageo</title>
+    <link rel='stylesheet' href='/stylesheets/main.css'>
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Tenor+Sans" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
+    <script src="https://cdn.rawgit.com/konvajs/konva/2.0.2/konva.min.js"></script>
+  </head>
+  <body style="
   background-color: <%= @bgcolor if @bgcolor %>;
   color: <%= @color if @color %>">
-  <header>
-    <a class="title" href="<%=@destination%>">Collageo</a>
-  </header>
-<% if logged_in? %>
-<h6 class="user-left"><%= (@user.username + " &#9787; ")*100%></h6>
-<h6 class="user-right"><%= (@user.username + " &#9787; ")*100%></h6>
-<%end%>
+    <header>
+      <a class="title" href="<%=@destination%>">Collageo</a>
+    </header>
 
+    <% if logged_in? %>
+      <h6 class="user-left"><%= (@user.username + " &#9787; ")*100%></h6>
+      <h6 class="user-right"><%= (@user.username + " &#9787; ")*100%></h6>
+    <%end%>
 
+    <%= yield %>
 
-
-  <%= yield %>
-
-
-</body>
+    
+  </body>
 </html>
